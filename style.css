@@ -24,7 +24,6 @@
   background: #888;
   -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
-
 html {
     width: 100%;
     max-width: 100%;
@@ -35,7 +34,7 @@ html {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    background-color: #fafae5;
+    background-color: #8FBC8F;
   }     
     
 *{
@@ -45,7 +44,6 @@ html {
   text-decoration: none;
   list-style: none;   
 }
-
 /*параметры для смартфонов*/
 @media only screen and (max-width:480px) {
 ul {
@@ -79,13 +77,11 @@ li:hover  {
    transition: width 0.3s ease-in-out;
    width: 8.3vw;
 }
-
-#one {background-color:#1F2937;}
-#two {background-color:#B45309;}
-#three {background-color:#F59E0B;}
-#four {background-color:#FEF3C7;}
-#five {background-color:#F97316;}
-
+#one {background-color:#ffffff;}
+#two {background-color:#FFFF00;}
+#tre {background-color:#8B0000;}
+#for {background-color:#C71585;}
+#five {background-color:#4169E1;}
 section {
   position: relative;
   display: block;
@@ -101,7 +97,6 @@ section .cover {
   height: 100%;
   z-index: 1;
 }
-
 section .cover img #start{
   position: absolute;
   display: block;
@@ -112,7 +107,6 @@ section .cover img #start{
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
 section .content {
   position: absolute;
   display: block;
@@ -141,7 +135,7 @@ section .text {
   overflow: hidden;
   -webkit-animation: rotation 40s infinite linear;
 }
-  
+
 @-webkit-keyframes rotation {
 		from {
 				-webkit-transform: rotate(0deg);
@@ -150,7 +144,6 @@ section .text {
 				-webkit-transform: rotate(359deg);
 		}
 }
-
 img {
   width: 100%;
 }
@@ -195,9 +188,7 @@ img {
       opacity: 1;
     }
   }
-
-
-  .scroll {
+.scroll {
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-size: 3vw;
@@ -226,23 +217,19 @@ img {
   letter-spacing: 0.3vw;
   color: black;
 }
-
 #one2 {
-  background: linear-gradient(to bottom right, #9fc5fb, #d3f1fe);
+  background: linear-gradient(to bottom right, #ffffff, #006400);
 }
-
 .poster {
   width: 70vw;
   margin-top: 4vw;
   margin-left: 18vw;
   z-index: 1;
 }
-
 #mobiletext {
-    color: #ffffff;
+    color: #FFFFFF;
   }  
 }
-
 /*параметры для десктопа*/
 @media only screen and (min-width:990px) {
   
@@ -277,17 +264,16 @@ li:hover  {
    transition: width 0.3s ease-in-out;
    width: 80px;
 }
-
-#one {background-color:#1F2937;}
-#two {background-color:#B45309;}
-#three {background-color:#F59E0B;}
-#four {background-color:#FEF3C7;}
-#five {background-color:#F97316;}
+#one {background-color:#ffffff;}
+#two {background-color:#FFFF00;}
+#three {background-color:#8B0000;}
+#four {background-color:#C71585;}
+#five {background-color:#4169E1;}
 
 section {
   position: relative;
-  display: block;
   margin-left: -10px;
+  display: block;
   width: 120%;
   height: 60vw;
   overflow: hidden;
@@ -355,7 +341,7 @@ img {
 }
   
 #title {
-  position: relative;
+  position: fixed;
   font-family: 'Montserrat', sans-serif;
   font-size: 4.31vw;
   margin-top: 25%;
@@ -427,17 +413,15 @@ img {
   letter-spacing: 0.2vw;
   color: black;
 }
-
 #one2 {
-  background: linear-gradient(to bottom right, #9fc5fb, #d3f1fe);
+  background: linear-gradient(to bottom right, #ffffff, #006400);
 }
-
 .poster {
   overflow: hidden;
   width: 350px;
   margin-top: 6vw;
   margin-left: 525px;
   z-index: 1;
- filter: drop-shadow(4px 10px 15px цвет тени);
+ filter: drop-shadow(4px 10px 15px #8FBC8F);
 }
 }
