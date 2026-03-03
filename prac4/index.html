@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Childish Gambino</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:300,900');
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      height: 100%;
+      margin: 0;
+    }
+
+    .box {
+      width: 100%;
+      position: absolute;
+      margin-top: -400px;
+      overflow: auto;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    img {
+      width: 95%;
+    }
+
+    #text {
+      z-index: 0;
+      padding: 18px 38px;
+    }
+
+    .nav {
+      z-index: 9;
+      position: fixed;
+      bottom: 10.5%;
+      right: 5.5%;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.48);
+      cursor: pointer;
+      transition: all 0.3s ease-in;
+    }
+
+    .nav.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url("адрес фона основного меню") center/cover no-repeat;
+      z-index: 0;
+    }
+
+    #header-overlay {
+      height: 100vh;
+      width: 100%;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    #intro {
+      position: absolute;
+      top: 10%;
+      left: 47%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+      color: rgba(96, 125, 139, 1.0);
+    }
+
+    #intro h3 {
+      font-family: 'Montserrat', serif;
+      font-size: 50px;
+      text-transform: capitalize;
+      font-weight: 400;
+      padding-bottom: 7px;
+      transition: .7s ease-in-out;
+      color: rgba(70, 130, 180);
+    }
+
+    #intro a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      border: 1px solid rgba(96, 125, 139, 1.0);
+      padding: 10px 30px;
+      position: absolute;
+      transition: .3s ease-in-out;
+      cursor: pointer;
+      left: 0;
+      top: 0;
+    }
+
+    #button-container {
+      height: 40px;
+      width: 121px;
+      position: absolute;
+      left: 50%;
+      top: 350%;
+      transform: translate(-50%, 50%);
+      transition: .3s ease-in-out;
+    }
+
+    #button-overlay {
+      height: 40px;
+      width: 0;
+      top: 0px;
+      left: 0;
+      position: absolute;
+      background: #607d8b;
+      transition: .3s ease-in-out;
+    }
+
+    .loader {
+      width: 121px !important;
+    }
+
+    .loader2 {
+      color: #000;
+      border: 1px solid rgba(255, 255, 240) !important;
+    }
+
+    .fuller {
+      margin-left: -8%;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .fuller2 {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    #menu-button-container {
+      display: inline-block;
+      float: right;
+      padding: 80px;
+      margin-top: -60px;
+    }
+
+    #menu-button {
+      height: 30px;
+      width: 35px;
+      position: relative;
+      cursor: pointer;
+      z-index: 2000;
+      overflow: hidden;
+    }
+
+    #menu-button div {
+      height: 3px;
+      width: 100%;
+      background: #607d8b;
+      position: absolute;
+      top: 14px;
+      transition: .4s ease-in-out;
+    }
+
+    #menu-button div:nth-child(1) {
+      top: 7px;
+    }
+
+    #menu-button div:nth-child(2), #menu-button div:nth-child(3) {
+      top: 14px;
+    }
+
+    #menu-button div:nth-child(4) {
+      top: 21px;
+    }
+
+    #menu-button.animate div:nth-child(1), #menu-button.animate div:nth-child(4) {
+      top: 14px;
+      opacity: 0;
+    }
+
+    #menu-button.animate div:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    #menu-button.animate div:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    #menu-button.change-color div {
+      background: #37474f;
+    }
+
+    #menu-button.hover-animation div:nth-child(1), #menu-button.hover-animation div:nth-child(4) {
+      width: 80%;
+    }
+
+    #menu-button.hover-color div {
+      background: #263238;
+    }
+    
+    #menu-button.hover-color2 div {
+      background: #90a4ae !important;
+    }
+
+    
+    #menu-overlay {
+      position: absolute;
+      height: 0;
+      width: 95%;
+      background: url("картинка меню") center/cover no-repeat;
+      left: 0;
+      top: 0;
+      transition: .5s ease-in;
+      z-index: 2000;
+    }
+
+    
+    .reveal {
+      height: 700px !important;
+    }
+
+    #nav-container {
+      position: absolute;
+      top: 10%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      z-index: 2000;
+      transition: 1s ease-out;
+    }
+
+    #nav-container ul li {
+      list-style: none;
+      transition: .6s ease-in-out;
+    }
+
+    
+    #nav-container ul li a {
+      text-decoration: none;
+      font-family: 'Montserrat', serif;
+      font-size: 50px;
+      line-height: 28px;
+      color: #455a64;
+      transition: .3s ease-in-out;
+    }
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+      margin-left: -60%;
+    }
+
+    
+    .nav-animate {
+      color: #1976d2 !important;
+    }
+
+    
+    .first-character {
+      float: left;
+      font-size: 84px;
+      line-height: 64px;
+      padding-top: 4px;
+      padding-right: 8px;
+      padding-left: 3px;
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div id="header-container">
+      <div id="header-bg"></div>
+      <div id="header-overlay">
+        <div id="intro">
+          <h3 class="fuller">Childish Gambino</h3>
+          <div id="button-container">
+            <div id="button-overlay"></div>
+            <a class="fuller2" href="#1">Изучить</a>
+          </div>
+        </div>
+        <div id="menu-overlay"></div>
+        <div id="menu-button-container">
+          <div id="menu-button">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="nav-container" class="hidden">
+        <ul>
+          <li id="nav1" class="hidden"><a href="#">Детство</a></li>
+          <li id="nav2" class="hidden"><a href="#">Биография</a></li>
+          <li id="nav3" class="hidden"><a href="#">Дискография</a></li>
+        </ul>
+      </div>
+
+      <main>
+        <div id="image">
+          <img src="основная" alt="">
+        </div>
+
+        <div id="text">
+          <p><span class="first-character">C</span>hildish Gambino — сценический проект американского артиста и продюсера Donald Glover, чья карьера развивалась на пересечении музыки, телевидения и кино. Родившись на базе ВВС в Edwards Air Force Base и выросший в штате Georgia, Гловер получил образование в New York University, где изучал драматическое искусство. Его междисциплинарная подготовка во многом определила характер музыкального проекта: он рассматривает поп-музыку как форму культурного высказывания, сопоставимую с театром и кино.
+          <br>
+          <br>
+
+          <p><span class="first-character">Р</span>анние работы Childish Gambino демонстрировали влияние альтернативного хип-хопа и интернет-культуры начала 2010-х годов. Альбом Camp стал попыткой артикулировать опыт «аутсайдера» в контексте американской расовой и образовательной среды. В текстах этого периода прослеживается аналитическое осмысление идентичности, социального отчуждения и медиареальности, а музыкальная структура композиций строится на сочетании электронных и оркестровых элементов.
+          <br>
+          <br>
+
+          <p><span class="first-character">С</span>ущественный сдвиг произошёл с выходом альбома Awaken, My Love!, где Гловер обратился к традициям фанка и психоделического соула 1970-х годов. В этой работе он переосмыслил наследие афроамериканской музыкальной культуры, отказавшись от доминирующих хип-хоп-паттернов в пользу живых инструментов и вокальной экспрессии. Композиция Redbone стала примером ретроспективного стилистического анализа: через звуковую стилизацию артист исследует вопросы доверия, уязвимости и межличностных отношений.
+          <br>
+          <br>
+
+          <section class="section" id="1"><p><span class="first-character">К</span>лючевым культурным событием стал сингл This Is America, сопровождавшийся видеоработой, вызвавшей широкую академическую и общественную дискуссию. Проект функционирует как аудиовизуальное исследование насилия, расовой динамики и механизма развлечения в США. Резкая смена музыкальных фрагментов внутри композиции интерпретируется исследователями как метафора нестабильности социальной реальности и фрагментарности медиапространства.</section>
+          <p>Поздний этап творчества, включая альбом 3.15.20 и последующие релизы, характеризуется большей абстрактностью и концептуальностью. Гловер экспериментирует с формой распространения материала, нумерацией треков и цифровыми форматами публикации, что отражает его интерес к трансформации музыкальной индустрии в эпоху стриминговых платформ. В целом Childish Gambino можно рассматривать как исследовательский художественный проект, в котором музыка служит инструментом анализа идентичности, технологий и социокультурных процессов современности.</p>
+        </div>
+
+        <div id="overlay"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#intro h3").delay(1000).queue(function(n){
+        $(this).toggleClass("fuller")
+        n()
+      })
+
+      $("#intro a").delay(1400).queue(function(n){
+        $(this).toggleClass("fuller2")
+        n()
+      })
+
+      $("#intro a").hover(function(){
+        $("#button-overlay").toggleClass("loader")
+        $("#button-container a").toggleClass("loader2")
+      })
+
+      $("#menu-button").hover(function(){
+        $("#menu-button").toggleClass("hover-animation")
+        $("#menu-button").toggleClass("hover-color")
+      })
+
+      $('#nav-container ul li a').hover(function(){
+        $('#nav-container ul li a').toggleClass('nav-animate');
+        $(this).toggleClass('nav-animate')
+      });
+
+      $("#menu-button").click(function (){
+        $("#intro h3").toggleClass("fuller")
+        $("#intro a").toggleClass('fuller2')
+        $("#menu-button").toggleClass("animate")
+        $("#menu-overlay").toggleClass("reveal")
+        $("#menu-button").toggleClass("change-color")
+        $("#menu-button").hover(function(){
+          $("#menu-button").toggleClass('hover-color')
+          $("#menu-button").toggleClass('hover-color2')
+        })
+        $("#nav-container").delay(200).queue(function(n){
+          $(this).toggleClass("hidden")
+          n()
+        })
+        $("#nav1").delay(400).queue(function(n){
+          $(this).toggleClass("hidden")
+          n()
+        })
+        $("#nav2").delay(600).queue(function(n){
+          $(this).toggleClass("hidden")
+          n()
+        })
+        $("#nav3").delay(800).queue(function(n){
+          $(this).toggleClass("hidden")
+          n()
+        })
+      })
+    })
+  </script>
+</body>
+</html>
