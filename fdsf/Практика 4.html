@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+  <title>3RACHA</title>
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,900');  
+
+html, body {
+
+  font-family: 'Montserrat', sans-serif;
+
+  height: 100%;
+
+  margin: 0;
+
+  }
+  .box {
+
+  width: 100%;
+
+  position: absolute;
+
+  margin-top: -400px;
+
+  overflow: auto;
+
+}
+
+* {
+
+  box-sizing: border-box;
+
+  padding: 0;
+
+  margin: 0;
+
+  font-family: 'Montserrat', sans-serif;
+
+  font-weight: 400;
+
+  font-size: 16px;
+
+  line-height: 1.3;
+
+}
+
+img {
+
+width: 95%;
+
+  }
+  
+  #text {
+
+  z-index: 0;
+
+  padding: 18px 38px;
+
+}
+
+
+
+.nav {
+
+  z-index: 9;
+
+  position: fixed;
+
+  bottom: 10.5%;
+
+  right: 5.5%;
+
+  width: 48px;
+
+  height: 48px;
+
+  border-radius: 50%;
+
+  background-color: #f9f9f9;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  visibilty: hidden;
+
+  opacity: 0;
+
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.48);
+
+  cursor: pointer;
+
+  transition: all 0.3s ease-in;
+
+}
+
+.nav.show {
+
+  visibility: visible;
+
+  opacity: 1;
+
+}
+
+#header-overlay {
+
+  height: 100vh;
+
+  width: 100%;
+
+  background: transparent;
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  z-index: 1000;
+
+}
+
+#intro {
+
+  position: absolute; 
+
+  top: 10%;
+
+  left: 47%;
+
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+
+  text-align: center;
+
+  color: rgba(96, 125, 139,1.0);
+
+}
+
+
+
+#intro h3 {
+
+  font-family: 'Montserrat', serif;
+
+  font-size: 50px;
+
+  text-transform: capitalize;
+
+  font-weight: 400;
+
+  padding-bottom: 7px;
+
+  transition: .7s ease-in-out;
+
+  color: rgba(70,130,180);
+
+}
+
+
+
+#intro a {
+
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 14px;
+
+  border: 1px solid rgba(96, 125, 139,1.0);
+
+  padding: 10px 30px;
+
+  position: absolute;
+
+  transition: .3s ease-in-out;
+
+  cursor: pointer;
+
+  left: 0;
+
+  top: 0;
+
+}
+
+#button-container {
+
+  height: 40px;
+
+  width: 121px;
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 350%;
+
+  transform: translate(-50%, 50%);
+
+  transition: .3s ease-in-out;
+
+}
+
+#button-overlay {
+
+  height: 40px;
+
+  width: 0;
+
+  top: 0px;
+
+  left: 0;
+
+  position: absolute;
+
+  background: WHITE;
+
+  transition: .3s ease-in-out;
+
+}
+
+.loader {
+
+  width: 121px !important;
+
+}
+
+
+
+.loader2 {
+
+  color: #000;
+
+  border: 1px solid rgba(255, 255, 240) !important; 
+
+}
+
+.fuller {
+
+  margin-left: -8%;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+}
+
+
+
+.fuller2 {
+
+  visibility: hidden;
+
+  opacity: 0;
+
+}
+
+#menu-button-container {
+
+  display: inline-block;
+
+  float: right;
+
+  padding: 80px;
+
+  margin-top: -60px;
+
+}
+
+#menu-button {
+
+  height: 30px;
+
+  width: 35px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  z-index: 2000;
+
+  overflow: hidden;
+
+}
+
+#menu-button div {
+
+  height: 3px;
+
+  width: 100%;
+
+  background: #4682B4;
+
+  position: absolute;
+
+  top: 14px;
+
+  transition: .4s ease-in-out;
+
+}
+
+ #menu-button div:nth-child(1) {
+
+  top: 7px;
+
+} 
+
+#menu-button div:nth-child(2), #menu-button div:nth-child(3) {
+
+  top: 14px;
+
+}
+
+#menu-button div:nth-child(4) {
+
+  top: 21px;
+
+}
+
+#menu-button.animate div:nth-child(1), #menu-button.animate div:nth-child(4) {
+
+    top: 14px;
+
+    opacity: 0;
+
+  }
+
+#menu-button.animate div:nth-child(2) {
+
+    transform: rotate(45deg);
+
+  }
+
+#menu-button.animate div:nth-child(3) {
+
+  transform: rotate(-45deg);
+
+}
+
+#menu-button.change-color div {
+
+  background: #708090;
+
+}
+
+#menu-button.hover-animation div:nth-child(1), #menu-button.hover-animation div:nth-child(4) {
+
+  width: 80%;
+
+}
+
+#menu-button.hover-color div {
+
+  background: #4682B4;
+
+}
+
+
+
+#menu-button.hover-color2 div {
+
+  background: WHITE !important;
+
+}
+
+#menu-overlay {
+
+  position: absolute;
+
+  height: 0;
+
+  width: 95%;
+
+  background: url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac4/menu.jpg");
+
+  left: 0;
+
+  top: 0;
+
+  transition: .5s ease-in;
+
+  z-index: 2000;
+
+}
+
+.reveal {
+
+  height: 722px !important;
+
+}
+
+#nav-container {
+
+  position: absolute;
+
+  top: 10%;
+
+  left: 60%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 2000;
+
+  transition: 1s ease-out;
+
+}
+
+
+
+#nav-container ul li {
+
+  list-style: none;
+
+  transition: .6s ease-in-out;
+
+}
+
+#nav-container ul li a {
+
+  text-decoration: none;
+
+  font-family: 'Montserrat', serif;
+
+  font-size: 50px;
+
+  line-height: 28px;
+
+  color: #778899;
+
+  transition: .3s ease-in-out;
+
+}
+
+.hidden {
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  margin-left: -60%;
+
+}
+
+.nav-animate {
+
+  color: #EE82EE !important;
+
+  
+}
+.OneL {
+ float: left;
+ 
+ font-size: 84px;
+
+ line-height: 64px;
+
+ padding-top: 4px;
+
+ padding-right: 8px;
+
+ padding-left: 3px;
+    
+ color: #4682B4;
+    
+ font-family: 'Montserrat', sans-serif;
+}
+      
+</style>
+ </head>
+ <body>
+ 
+   <div class="box">
+<div id="header-container">
+  <div id="header-bg"></div>
+  <div id="header-overlay">
+    <div id="intro">
+<h3 class="fuller">3RACHA: больше, чем айдолы</h3>
+     <div id="button-container">
+        <div id="button-overlay"></div>
+		
+		<a class="fuller2" href="#1">Интересно?</a>
+      </div>
+       </div>
+	   
+	   <div id="menu-overlay"></div>
+<div id="menu-button-container">
+  <div id="menu-button">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div></div>
+</div>
+
+<div id="nav-container" class="hidden">
+    <ul>
+      <li id="nav1" class="hidden"><a href="#">История</a></li>
+      <li id="nav2" class="hidden"><a href="#">Дискография</a></li>
+      <li id="nav3" class="hidden"><a href="#">Достижения</a></li>
+    </ul>
+  </div>
+  
+  <main>
+  <div id="image">
+    <img src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac4/hero.jpg">
+  </div>
+  
+  <div id="text">
+  
+  <p><span class="first-character OneL">3</span>RACHA — команда продюсеров южнокорейской мужской группы Stray Kids (компания JYP Entertainment). Это хип-хоп саб-юнит группы, который считается автором и продюсером большей части дискографии Stray Kids вместе с продюсерами JYP. Название 3RACHA — это игра слов: с одной стороны, оно отсылает к знаменитому острому соусу, с другой — несёт многозначную символику: цифра три указывает на количество участников, а слово «racha» в переводе с испанского означает «порыв ветра» или «вспышка страсти».
+  <br>
+  <br>
+  
+  <p><span class="first-character OneL">Б</span>ан Чан — австралийский певец, рэпер, автор песен и музыкальный продюсер, проживающий в Южной Корее. Подписав контракт с JYP Entertainment, он стал лидером южнокорейского бойз-бэнда Stray Kids и участником 3Racha, собственной продюсерской команды и подразделения Stray Kids. Бан Чан сыграл ключевую роль в создании Stray Kids: он отбирал стажеров, придумывал название группы и разрабатывал ее логотип. Шоу на выживание Stray Kids было посвящено этому процессу и вопросу о том, дебютирует ли команда Бан Чана вместе, в отличие от обычных шоу на выживание, где состав группы определяется руководством агентства. С февраля 2023 года он является полноправным членом Корейской ассоциации по защите авторских прав в сфере музыки (KOMCA). Помимо работы над музыкой для Stray Kids, он писал саундтреки для таких сериалов, как Pop Out Boy!, «Башня Бога» и «Re:Revenge — В конце желания», а также для таких фильмов, как «Дораэмон: Небесная утопия Нобиты» и «Дэдпул и Росомаха». Банг Чан также писал песни для таких исполнителей, как JO1, Яо Чен и Show Lo, а также сотрудничал с Alesso, Sky-Hi, Tiger JK, Lil Durk и японской певицей Лизой.
+  <br>
+  <br>
+  
+  <p><span class="first-character OneL">C</span>о Чанбин, — южнокорейский рэпер, певец, автор песен и музыкальный продюсер. Он является участником южнокорейской бойз-группы Stray Kids, созданной JYP Entertainment в 2017 году. Он также входит в состав 3Racha, собственной продюсерской команды и подгруппы Stray Kids. Помимо участия в Stray Kids, Чанбин участвовал в качестве конкурсанта в шоу Show Me the Money 9 и сотрудничал с различными артистами, в том числе с Юн Джи Соном, тайскими рэперами F.Hero и Milli. В феврале 2023 года Чанбин стал полноправным членом Корейской ассоциации авторского права. Чанбин попал в JYP Entertainment после прослушивания, на котором он танцевал под собственную песню. Во время стажировки Чанбин объединился с другими стажерами JYP Бан Чаном и Ханом и создал андеграундную рэп-группу 3Racha, выпустившую несколько микстейпов под псевдонимом SpearB без ведома компании. Они загрузили свой первый микстейп J:/2017/mixtape, состоящий из семи треков, на SoundCloud.
+  <br
+  <br>
+  
+  <section class="section" id="1"><p><span class="first-character OneL">Х</span>ан Джисон известный под псевдонимом Хан, — южнокорейский рэпер, певец и автор песен. Он является участником южнокорейского бойз-бэнда Stray Kids и его продюсерского подразделения 3Racha под руководством JYP Entertainment. Хан является полноправным членом Корейской ассоциации по защите авторских прав в сфере музыки с февраля 2023 года и стал самым молодым K-pop-айдолом, удостоенным такого членства. По состоянию на май 2025 года он зарегистрировал 174 авторских и продюсерских работы, в том числе для NiziU, Show Lo, Яо Чена, JO1 и Nexz, а также совместные работы с такими артистами, как Lil Durk, Sky-Hi, Tiger JK и Lisa.</section>
+    
+<p>3RACHA — это творческий двигатель и DNA Stray Kids. Их работа бросила вызов традиционной модели K-pop, где музыку часто создают сторонние продюсеры. Они доказали, что идолы могут быть полноправными авторами и архитекторами своего успеха, что принесло группе огромное уважение как со стороны критиков, так и со стороны фанатов. 3RACHA стали символом творческой свободы и самореализации в современной индустрии.</p>
+  </div>
+  <div id="overlay"></div></div>
+  
+  </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+     
+<script>
+      $(document).ready(function(){
+
+
+
+  $("#intro h3").delay(1000).queue(function(n){
+
+    $(this).toggleClass("fuller")
+
+    n()
+
+  })
+
+
+
+  $("#intro a").delay(1400).queue(function(n){
+
+    $(this).toggleClass("fuller2")
+
+    n()
+
+  })
+
+
+
+   $("#intro a").hover(function(){
+
+     $("#button-overlay").toggleClass("loader")
+
+     $("#button-container a").toggleClass("loader2")
+
+   })
+
+
+
+   $("#menu-button").hover(function(){
+
+     $("#menu-button").toggleClass("hover-animation")
+
+     $("#menu-button").toggleClass("hover-color")
+
+   })
+
+
+
+   $('#nav-container ul li a').hover(function(){
+
+  $('#nav-container ul li a').toggleClass('nav-animate');
+
+  $(this).toggleClass('nav-animate')
+
+    /* $(this).toggleClass('nav-shadow') */
+
+});
+
+
+
+  $("#menu-button").click(function (){
+
+    $("#intro h3").toggleClass("fuller")
+
+  
+
+    $("#intro a").toggleClass('fuller2')
+
+
+
+    $("#menu-button").toggleClass("animate")
+
+    $("#menu-overlay").toggleClass("reveal")
+
+    $("#menu-button").toggleClass("change-color")
+
+    $("#menu-button").hover(function(){
+
+      $("#menu-button").toggleClass('hover-color')
+
+      $("#menu-button").toggleClass('hover-color2')
+
+    })
+
+    $("#nav-container").delay(200).queue(function(n){
+
+      $(this).toggleClass("hidden")
+
+      n()
+
+    })
+
+    $("#nav1").delay(400).queue(function(n){
+
+      $(this).toggleClass("hidden")
+
+      n()
+
+    })
+
+
+
+    $("#nav2").delay(600).queue(function(n){
+
+      $(this).toggleClass("hidden")
+
+      n()
+
+    })
+
+
+
+    $("#nav3").delay(800).queue(function(n){
+
+      $(this).toggleClass("hidden")
+
+      n()
+
+    })
+
+  })
+
+
+
+})
+</script>
+
+</div>
+</body>
+</html>
