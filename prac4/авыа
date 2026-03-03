@@ -22,7 +22,7 @@
     }
 
     :root {
-      --content-width: min(900px, 95vw);
+      --content-width: min(600px, 95vw);
     }
 
     * {
@@ -74,13 +74,13 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background: url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac4/Childish-Gambino-Because-the-Internet.jpg") center/cover no-repeat;
       z-index: 0;
     }
 
     #header-overlay {
-      height: 100%;
+      height: 100vh;
       width: 100%;
       background: transparent;
       position: absolute;
@@ -92,15 +92,13 @@
     #header-container {
       position: relative;
       width: var(--content-width);
-      height: calc(var(--content-width) * 9 / 16);
-      aspect-ratio: 16 / 9;
       margin: 0 auto;
     }
 
     #intro {
       position: absolute;
-      top: 32%;
-      left: 50%;
+      top: 10%;
+      left: 47%;
       transform: translate(-50%, -50%);
       width: 100%;
       text-align: center;
@@ -134,7 +132,7 @@
       width: 121px;
       position: absolute;
       left: 50%;
-      top: 220%;
+      top: 350%;
       transform: translate(-50%, 50%);
       transition: .3s ease-in-out;
     }
@@ -249,7 +247,7 @@
 
     
     .reveal {
-      height: 100% !important;
+      height: 338px !important;
     }
 
     #nav-container {
@@ -298,10 +296,16 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    main {
-      width: var(--content-width);
+    #image img {
+      width: 100%;
+      display: block;
       margin: 0 auto;
-      padding-top: 0;
+    }
+
+    main {
+      width: 100%;
+      margin: 0 auto;
+      padding-top: 100vh;
       position: relative;
       z-index: 1;
       background: #fff;
@@ -344,9 +348,11 @@
         </ul>
       </div>
 
-    </div>
+      <main>
+        <div id="image">
+          <img src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac4/hero.jpg" alt="">
+        </div>
 
-    <main>
         <div id="text">
           <p><span class="first-character">C</span>hildish Gambino — сценический проект американского артиста и продюсера Donald Glover, чья карьера развивалась на пересечении музыки, телевидения и кино. Родившись на базе ВВС в Edwards Air Force Base и выросший в штате Georgia, Гловер получил образование в New York University, где изучал драматическое искусство. Его междисциплинарная подготовка во многом определила характер музыкального проекта: он рассматривает поп-музыку как форму культурного высказывания, сопоставимую с театром и кино.</p>
 
@@ -359,7 +365,8 @@
         </div>
 
         <div id="overlay"></div>
-    </main>
+      </main>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
