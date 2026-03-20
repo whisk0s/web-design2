@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import { OrbitControls } from "jsm/controls/OrbitControls.js";
-import { RGBELoader } from "jsm/loaders/RGBELoader.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/controls/OrbitControls.js";
+import { RGBELoader } from "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/loaders/RGBELoader.js";
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
@@ -19,6 +19,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -36,7 +39,7 @@ const palette = [
 ];
 
 const particlesSource =
-  "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
+  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
 
 const videos = [];
 for (let g = 0; g < groupCount; g++) {
@@ -116,13 +119,16 @@ window.addEventListener(
 
 const hdrLoader = new RGBELoader();
 hdrLoader.load(
-  "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac7/assets/qwantani_dusk_2_puresky_2k.hdr",
+  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/qwantani_dusk_2_puresky_2k.hdr",
   (hdrTexture) => {
     hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
-    hdrTexture.colorSpace = THREE.SRGBColorSpace;
     scene.background = hdrTexture;
     scene.backgroundRotation.y = (Math.PI / 180) * -160;
     scene.backgroundRotation.x = (Math.PI / 180) * -20;
+  },
+  undefined,
+  (error) => {
+    console.error("HDR load failed:", error);
   },
 );
 
