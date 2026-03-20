@@ -43,7 +43,7 @@ const palette = [
 ];
 
 const particlesSource =
-  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
+  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/prac7_assets_sparkling_particle-Picsart-BackgroundRemover-Picsart-BackgroundRemover.webm";
 
 // Preprocess video frames to cut near-white matte that appears on some hosts/codecs.
 const matteCanvas = document.createElement("canvas");
@@ -132,7 +132,7 @@ window.addEventListener(
 
 const hdrLoader = new RGBELoader();
 hdrLoader.load(
-  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/qwantani_dusk_2_puresky_2k.hdr",
+  "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/dikhololo_night_2k.hdr",
   (hdrTexture) => {
     hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = hdrTexture;
