@@ -16,6 +16,7 @@ camera.position.z = 5;
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector(".webgl"),
   antialias: true,
+  alpha: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -23,8 +24,11 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, document.body);
 controls.enableDamping = true;
+controls.enablePan = false;
+controls.enableZoom = false;
+controls.rotateSpeed = 0.45;
 
 const particlesGroup = new THREE.Group();
 scene.add(particlesGroup);
@@ -41,6 +45,16 @@ const palette = [
 const particlesSource =
   "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
 
+// Preprocess video frames to cut near-white matte that appears on some hosts/codecs.
+const matteCanvas = document.createElement("canvas");
+matteCanvas.width = 256;
+matteCanvas.height = 256;
+const matteCtx = matteCanvas.getContext("2d", { willReadFrequently: true });
+const processedTexture = new THREE.CanvasTexture(matteCanvas);
+processedTexture.colorSpace = THREE.SRGBColorSpace;
+processedTexture.minFilter = THREE.LinearFilter;
+processedTexture.magFilter = THREE.LinearFilter;
+
 const videos = [];
 for (let g = 0; g < groupCount; g++) {
   const video = document.createElement("video");
@@ -56,11 +70,6 @@ for (let g = 0; g < groupCount; g++) {
   if (tryPlay && typeof tryPlay.catch === "function") {
     tryPlay.catch(() => {});
   }
-
-  const videoTexture = new THREE.VideoTexture(video);
-  videoTexture.colorSpace = THREE.SRGBColorSpace;
-  videoTexture.minFilter = THREE.LinearFilter;
-  videoTexture.magFilter = THREE.LinearFilter;
 
   const particlesGeometry = new THREE.BufferGeometry();
   const positionsArray = new Float32Array(particlesPerGroup * 3);
@@ -89,11 +98,15 @@ for (let g = 0; g < groupCount; g++) {
   );
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: 10,
+    size: 3.2,
     transparent: true,
+    opacity: 0.9,
     depthWrite: false,
+    depthTest: false,
     alphaTest: 0.001,
-    alphaMap: videoTexture,
+    map: processedTexture,
+    alphaMap: processedTexture,
+    blending: THREE.AdditiveBlending,
     vertexColors: false,
   });
 
@@ -137,6 +150,23 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   particlesGroup.rotation.x = elapsedTime * 0.1;
+  particlesGroup.rotation.y = elapsedTime * 0.04;
+
+  if (matteCtx && videos[0] && videos[0].readyState >= 2) {
+    matteCtx.drawImage(videos[0], 0, 0, matteCanvas.width, matteCanvas.height);
+    const frame = matteCtx.getImageData(0, 0, matteCanvas.width, matteCanvas.height);
+    const data = frame.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      if (r > 238 && g > 238 && b > 238) {
+        data[i + 3] = 0;
+      }
+    }
+    matteCtx.putImageData(frame, 0, 0);
+    processedTexture.needsUpdate = true;
+  }
 
   controls.update();
   renderer.render(scene, camera);
