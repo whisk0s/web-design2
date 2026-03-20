@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proto-3D Music Player</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      height: 100%;
+      background-color: #f5e0e5;
+      position: relative;
+      font-family: "Roboto", sans-serif;
+      background-image: url("./assets/page-bg.svg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    .player {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 330px;
+      height: 530px;
+      border-radius: 15px;
+      box-shadow: 0 15px 20px 10px rgba(139, 44, 79, 0.35);
+      background-image: url("./assets/player-bg.svg");
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .player input[type=range] {
+      -webkit-appearance: none !important;
+      margin: 0;
+      padding: 0;
+      background: white;
+      height: 5px;
+      width: 150px;
+      outline: none;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+
+    .player input[type=range]::-ms-fill-lower {
+      background: white;
+    }
+
+    .player input[type=range]::-ms-fill-upper {
+      background: white;
+    }
+
+    .player input[type=range]::-moz-range-track {
+      border: none;
+      background: white;
+    }
+
+    .player input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      background: #00b7ff;
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+      box-shadow: -100vw 0 0 100vw DeepSkyBlue;
+    }
+
+    .player input[type=range]::-moz-range-thumb {
+      background: #00b7ff;
+      height: 8px;
+      width: 8px;
+      border-radius: 100%;
+      border: none;
+    }
+
+    .player input[type=range]::-ms-thumb {
+      -webkit-appearance: none !important;
+      background: #00b7ff;
+      height: 8px;
+      width: 8px;
+      border-radius: 100%;
+    }
+
+    .player .cover {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
+      box-shadow: 0 15px 20px 10px rgba(139, 44, 79, 0.35);
+    }
+
+    .player .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .player .info {
+      position: relative;
+      left: 50%;
+      top: 240px;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .player .info .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: #ffffff;
+    }
+
+    .player .info .singer {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .player .btn-box {
+      position: absolute;
+      top: 330px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .player .btn-box i {
+      font-size: 24px;
+      color: white;
+      margin: 0 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .player .btn-box i.active {
+      color: RoyalBlue;
+    }
+
+    .player .volume-box {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 295px;
+      transform: translateX(-50%);
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    .player .volume-box .volume-down {
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #72646f;
+      user-select: none;
+    }
+
+    .player .volume-box .volume-up {
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #72646f;
+      user-select: none;
+    }
+
+    .player .volume-box .volume-up::selection {
+      background-color: unset;
+    }
+
+    .player .volume-box input[type=range] {
+      height: 5px;
+      width: 150px;
+      margin: 0 0 15px 0;
+    }
+
+    .player .volume-box.active {
+      display: block;
+    }
+
+    .player .music-box {
+      position: absolute;
+      left: 50%;
+      top: 385px;
+      transform: translateX(-50%);
+    }
+
+    .player .music-box input[type=range] {
+      height: 5px;
+      width: 230px;
+      margin: 0 0 10px 0;
+    }
+
+    .player .music-box input[type=range]::-webkit-slider-thumb {
+      height: 5px;
+      width: 7px;
+    }
+
+    .player .music-box .current-time {
+      position: absolute;
+      left: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: white;
+    }
+
+    .player .music-box .duration {
+      position: absolute;
+      right: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: white;
+    }
+
+    .player .music-box .play,
+    .player .music-box .pause {
+      position: absolute;
+      left: 50%;
+      top: 55px;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      background-color: white;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .player .music-box .play i,
+    .player .music-box .pause i {
+      font-size: 36px;
+      color: #72646f;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-48%, -50%);
+      user-select: none;
+    }
+
+    .player .music-box .pause i {
+      font-size: 32px;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: 420px) {
+      .player {
+        width: 300px;
+        height: 510px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <div class="cover">
+      <img src="./assets/artist-cover.jpg" alt="Artist cover">
+    </div>
+
+    <div class="info">
+      <div class="title">We</div>
+      <div class="singer">Mac Miller feat. CeeLo Green</div>
+    </div>
+
+    <div class="volume-box">
+      <span class="volume-down"><i class="material-icons">remove</i></span>
+      <input class="volume-range" max="100" min="0" oninput="music.volume = this.value/100" step="1" type="range" value="80">
+      <span class="volume-up"><i class="material-icons">add</i></span>
+    </div>
+
+    <div class="btn-box">
+      <i class="material-icons repeat" onclick="handleRepeat()">repeat</i>
+      <i class="material-icons volume" onclick="handleVolume()">volume_up</i>
+    </div>
+
+    <div class="music-box">
+      <input class="seekbar" max="100" min="0" oninput="handleSeekBar()" step="1" type="range" value="0">
+
+      <audio class="music-element">
+        <source src="./assets/track.mp3" type="audio/mp3">
+      </audio>
+
+      <span class="current-time">0:00</span><span class="duration">0:00</span>
+      <span class="play" onclick="handlePlay()">
+        <i class="material-icons">play_arrow</i>
+      </span>
+    </div>
+  </div>
+
+  <script>
+    var music = document.querySelector('.music-element');
+    var playBtn = document.querySelector('.play');
+    var seekbar = document.querySelector('.seekbar');
+    var currentTime = document.querySelector('.current-time');
+    var duration = document.querySelector('.duration');
+
+    function padTime(value) {
+      return value < 10 ? '0' + value : value;
+    }
+
+    function handlePlay() {
+      if (music.paused) {
+        music.play();
+        playBtn.className = 'pause';
+        playBtn.innerHTML = '<i class="material-icons">pause</i>';
+      } else {
+        music.pause();
+        playBtn.className = 'play';
+        playBtn.innerHTML = '<i class="material-icons">play_arrow</i>';
+      }
+    }
+
+    music.addEventListener('ended', function () {
+      playBtn.className = 'play';
+      playBtn.innerHTML = '<i class="material-icons">play_arrow</i>';
+      music.currentTime = 0;
+    });
+
+    music.onloadeddata = function () {
+      seekbar.max = music.duration;
+      var ds = parseInt(music.duration % 60, 10);
+      var dm = parseInt((music.duration / 60) % 60, 10);
+      duration.innerHTML = dm + ':' + padTime(ds);
+      music.volume = document.querySelector('.volume-range').value / 100;
+    };
+
+    music.ontimeupdate = function () {
+      seekbar.value = music.currentTime;
+    };
+
+    function handleSeekBar() {
+      music.currentTime = seekbar.value;
+    }
+
+    music.addEventListener('timeupdate', function () {
+      var cs = parseInt(music.currentTime % 60, 10);
+      var cm = parseInt((music.currentTime / 60) % 60, 10);
+      currentTime.innerHTML = cm + ':' + padTime(cs);
+    }, false);
+
+    var repIcon = document.querySelector('.repeat');
+
+    function handleRepeat() {
+      if (music.loop === true) {
+        music.loop = false;
+        repIcon.classList.remove('active');
+      } else {
+        music.loop = true;
+        repIcon.classList.add('active');
+      }
+    }
+
+    var volIcon = document.querySelector('.volume');
+    var volBox = document.querySelector('.volume-box');
+    var volumeRange = document.querySelector('.volume-range');
+    var volumeDown = document.querySelector('.volume-down');
+    var volumeUp = document.querySelector('.volume-up');
+
+    function handleVolume() {
+      volIcon.classList.toggle('active');
+      volBox.classList.toggle('active');
+    }
+
+    volumeDown.addEventListener('click', handleVolumeDown);
+    volumeUp.addEventListener('click', handleVolumeUp);
+
+    function handleVolumeDown() {
+      volumeRange.value = Math.max(0, Number(volumeRange.value) - 20);
+      music.volume = volumeRange.value / 100;
+    }
+
+    function handleVolumeUp() {
+      volumeRange.value = Math.min(100, Number(volumeRange.value) + 20);
+      music.volume = volumeRange.value / 100;
+    }
+  </script>
+</body>
+</html>

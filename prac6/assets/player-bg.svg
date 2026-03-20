@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ec5f8f"/>
+      <stop offset="100%" stop-color="#cf3f76"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="20%" cy="10%" r="55%">
+      <stop offset="0%" stop-color="#ffd9e7" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#ffd9e7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1200" rx="36" fill="url(#panel)"/>
+  <rect x="38" y="38" width="724" height="1124" rx="30" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="160" cy="120" r="260" fill="url(#shine)"/>
+</svg>
