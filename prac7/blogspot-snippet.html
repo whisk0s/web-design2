@@ -351,6 +351,7 @@ scene.add(particlesGroup);
 
 const groupCount = 3;
 const particlesPerGroup = 30;
+const particlesUrl = "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
 
 const palette = [
   new THREE.Color(0x00ffcc),
@@ -361,12 +362,16 @@ const palette = [
 for (let g = 0; g < groupCount; g++) {
   const video = document.createElement("video");
   video.crossOrigin = "anonymous";
-  video.src = "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
+  video.src = particlesUrl;
   video.loop = true;
   video.muted = true;
   video.playsInline = true;
+  video.preload = "auto";
+  video.autoplay = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
   video.playbackRate = 0.010 + Math.random() * 1.0;
-  video.play();
+  video.play().catch(() => {});
 
   const videoTexture = new THREE.VideoTexture(video);
   videoTexture.colorSpace = THREE.SRGBColorSpace;
@@ -399,14 +404,14 @@ for (let g = 0; g < groupCount; g++) {
   );
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: 2.2,
+    size: 5.0,
     transparent: true,
     opacity: 0.85,
     depthWrite: false,
     depthTest: false,
     alphaTest: 0.02,
     map: videoTexture,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     vertexColors: false,
   });
 
@@ -414,6 +419,12 @@ for (let g = 0; g < groupCount; g++) {
   particles.frustumCulled = false;
   particlesGroup.add(particles);
 }
+
+window.addEventListener("pointerdown", () => {
+  document.querySelectorAll("video").forEach((v) => {
+    if (v.paused) v.play().catch(() => {});
+  });
+}, { once: true });
 
 const hdrLoader = new HDRLoader();
 const hdrTexture = hdrLoader.load(
