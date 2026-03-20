@@ -351,7 +351,7 @@ scene.add(particlesGroup);
 
 const groupCount = 3;
 const particlesPerGroup = 30;
-const particlesUrl = "https://cdn.jsdelivr.net/gh/whisk0s/web-design2@main/prac7/assets/sparkling_particle-Picsart-BackgroundRemover.webm";
+const particlesUrl = "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac7/assets/prac7_assets_sparkling_particle-Picsart-BackgroundRemover-Picsart-BackgroundRemover.webm";
 
 const palette = [
   new THREE.Color(0x00ffcc),
@@ -359,24 +359,30 @@ const palette = [
   new THREE.Color(0xffffff),
 ];
 
-for (let g = 0; g < groupCount; g++) {
-  const video = document.createElement("video");
-  video.crossOrigin = "anonymous";
-  video.src = particlesUrl;
-  video.loop = true;
-  video.muted = true;
-  video.playsInline = true;
-  video.preload = "auto";
-  video.autoplay = true;
-  video.setAttribute("muted", "");
-  video.setAttribute("playsinline", "");
-  video.playbackRate = 0.010 + Math.random() * 1.0;
-  video.play().catch(() => {});
+const video = document.createElement("video");
+video.crossOrigin = "anonymous";
+video.src = particlesUrl;
+video.loop = true;
+video.muted = true;
+video.playsInline = true;
+video.preload = "auto";
+video.autoplay = true;
+video.setAttribute("muted", "");
+video.setAttribute("playsinline", "");
+video.playbackRate = 0.55;
+video.play().catch(() => {});
 
-  const videoTexture = new THREE.VideoTexture(video);
-  videoTexture.colorSpace = THREE.SRGBColorSpace;
-  videoTexture.minFilter = THREE.LinearFilter;
-  videoTexture.magFilter = THREE.LinearFilter;
+// Convert the video into a keyed texture: bright matte pixels become transparent.
+const matteCanvas = document.createElement("canvas");
+matteCanvas.width = 512;
+matteCanvas.height = 512;
+const matteCtx = matteCanvas.getContext("2d", { willReadFrequently: true });
+const processedTexture = new THREE.CanvasTexture(matteCanvas);
+processedTexture.minFilter = THREE.LinearFilter;
+processedTexture.magFilter = THREE.LinearFilter;
+processedTexture.generateMipmaps = false;
+
+for (let g = 0; g < groupCount; g++) {
 
   const particlesGeometry = new THREE.BufferGeometry();
   const positionsArray = new Float32Array(particlesPerGroup * 3);
@@ -404,13 +410,12 @@ for (let g = 0; g < groupCount; g++) {
   );
 
   const particlesMaterial = new THREE.PointsMaterial({
-    size: 5.0,
+    size: 3.0,
     transparent: true,
-    opacity: 0.85,
+    opacity: 1.0,
     depthWrite: false,
-    depthTest: false,
-    alphaTest: 0.02,
-    map: videoTexture,
+    alphaTest: 0.01,
+    map: processedTexture,
     blending: THREE.NormalBlending,
     vertexColors: false,
   });
@@ -421,9 +426,7 @@ for (let g = 0; g < groupCount; g++) {
 }
 
 window.addEventListener("pointerdown", () => {
-  document.querySelectorAll("video").forEach((v) => {
-    if (v.paused) v.play().catch(() => {});
-  });
+  if (video.paused) video.play().catch(() => {});
 }, { once: true });
 
 const hdrLoader = new HDRLoader();
@@ -443,6 +446,31 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   particlesGroup.rotation.x = elapsedTime * 0.1;
+  particlesGroup.rotation.y = elapsedTime * 0.03;
+
+  if (matteCtx && video.readyState >= 2) {
+    matteCtx.drawImage(video, 0, 0, matteCanvas.width, matteCanvas.height);
+    try {
+      const frame = matteCtx.getImageData(0, 0, matteCanvas.width, matteCanvas.height);
+      const data = frame.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        // Remove white/light matte blocks while keeping dark-purple particles visible.
+        if (r > 225 && g > 225 && b > 225) {
+          data[i + 3] = 0;
+        } else {
+          data[i + 3] = 255;
+        }
+      }
+      matteCtx.putImageData(frame, 0, 0);
+      processedTexture.needsUpdate = true;
+    } catch (_) {
+      // If pixel read is blocked by browser policy, keep original frame drawing only.
+      processedTexture.needsUpdate = true;
+    }
+  }
 
   controls.update();
   renderer.render(scene, camera);
