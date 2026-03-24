@@ -427,7 +427,7 @@
     <p>Вертикальный 3D-параллакс со спортивными объектами</p>
   </header>
 
-  <div class="falling-object falling-racket" data-label="теннисная ракетка">
+  <div class="falling-object falling-racket" data-label="падающий воланчик">
     <img id="falling-racket-img" alt="Воланчик для бадминтона">
   </div>
 
@@ -435,10 +435,10 @@
     <div class="media-slot" id="bg-3-1" data-label="главный футбольный мяч"></div>
     <div class="media-slot" id="bg-3-2" data-label="главный баскетбольный мяч"></div>
     <div class="media-slot" id="bg-3-3" data-label="главный теннисный объект">
-      <p class="layer-note">Football, basketball and tennis</p>
+      <p class="layer-note">Футбол, баскетбол и теннис</p>
     </div>
-    <div class="media-slot" id="bg-3-4" data-label="нижний спортивный коллаж">
-      <p class="layer-note">Champions start with motion</p>
+    <div class="media-slot" id="bg-3-4" data-label="футбольная сетка">
+      <p class="layer-note">Точность удара и движение вперёд</p>
     </div>
   </div>
 
@@ -448,10 +448,10 @@
     <div class="media-slot" id="bg-2-3" data-label="гольф-мяч"></div>
     <div class="media-slot" id="bg-2-4" data-label="мяч для американского футбола"></div>
     <div class="media-slot" id="bg-2-5" data-label="шлем">
-      <p class="layer-note">Speed, focus and control</p>
+      <p class="layer-note">Скорость, фокус и защита</p>
     </div>
     <div class="media-slot" id="bg-2-6" data-label="мяч для настольного тенниса">
-      <p class="layer-note">Balls in motion</p>
+      <p class="layer-note">Спортивные мячи в движении</p>
     </div>
   </div>
 
@@ -468,7 +468,7 @@
     <div class="media-slot" id="bg-1-2" data-label="ракетка для пинг-понга"></div>
     <div class="media-slot" id="bg-1-3" data-label="боксёрские перчатки"></div>
     <div class="media-slot" id="bg-1-4" data-label="баскетбольное кольцо">
-      <p class="layer-note">More gear, more energy</p>
+      <p class="layer-note">Ещё больше спорта и энергии</p>
     </div>
     <div class="media-slot" id="bg-1-5" data-label="теннисная сетка"></div>
   </div>
@@ -476,43 +476,26 @@
   <div class="spacer" aria-hidden="true"></div>
 
   <script>
-    /*
-      Для Blogspot:
-      1. Загрузите картинки на GitHub Pages, raw.githubusercontent.com или другой хостинг.
-      2. Ниже замените ASSET_BASE на адрес папки, где лежат PNG.
-      3. Пример:
-         var ASSET_BASE = "https://raw.githubusercontent.com/USERNAME/REPO/main/prac8/assets";
-    */
-    var ASSET_BASE = "PASTE_YOUR_ASSET_FOLDER_URL_HERE";
+    document.documentElement.style.setProperty("--body-bg-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/fon.png")');
+    document.documentElement.style.setProperty("--bg-3-1-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/football.png")');
+    document.documentElement.style.setProperty("--bg-3-2-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/basketball.png")');
+    document.documentElement.style.setProperty("--bg-3-3-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/tennisball.png")');
+    document.documentElement.style.setProperty("--bg-3-4-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/footballnet.png")');
+    document.documentElement.style.setProperty("--bg-2-default-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/volleyballnet.png")');
+    document.documentElement.style.setProperty("--bg-2-2-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/baseball.png")');
+    document.documentElement.style.setProperty("--bg-2-3-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/golf.png")');
+    document.documentElement.style.setProperty("--bg-2-4-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/usaball.png")');
+    document.documentElement.style.setProperty("--bg-2-5-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/helmet.png")');
+    document.documentElement.style.setProperty("--bg-2-6-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/pingpongball.png")');
+    document.documentElement.style.setProperty("--bg-1-1-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/tennisracket.png")');
+    document.documentElement.style.setProperty("--bg-1-2-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/pingpongracket.png")');
+    document.documentElement.style.setProperty("--bg-1-3-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/gloves.png")');
+    document.documentElement.style.setProperty("--bg-1-4-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/basketballrim.png")');
+    document.documentElement.style.setProperty("--bg-1-5-image", 'url("https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/tennis%20net.png")');
 
-    function asset(name) {
-      return 'url("' + ASSET_BASE + "/" + name + '")';
-    }
-
-    function assetSrc(name) {
-      return ASSET_BASE + "/" + name;
-    }
-
-    document.documentElement.style.setProperty("--body-bg-image", asset("fon.png"));
-    document.documentElement.style.setProperty("--bg-3-1-image", asset("football.png"));
-    document.documentElement.style.setProperty("--bg-3-2-image", asset("basketball.png"));
-    document.documentElement.style.setProperty("--bg-3-3-image", asset("tennisball.png"));
-    document.documentElement.style.setProperty("--bg-3-4-image", asset("footballnet.png"));
-    document.documentElement.style.setProperty("--bg-2-default-image", asset("volleyballnet.png"));
-    document.documentElement.style.setProperty("--bg-2-2-image", asset("baseball.png"));
-    document.documentElement.style.setProperty("--bg-2-3-image", asset("golf.png"));
-    document.documentElement.style.setProperty("--bg-2-4-image", asset("usaball.png"));
-    document.documentElement.style.setProperty("--bg-2-5-image", asset("helmet.png"));
-    document.documentElement.style.setProperty("--bg-2-6-image", asset("pingpongball.png"));
-    document.documentElement.style.setProperty("--bg-1-1-image", asset("tennisracket.png"));
-    document.documentElement.style.setProperty("--bg-1-2-image", asset("pingpongracket.png"));
-    document.documentElement.style.setProperty("--bg-1-3-image", asset("gloves.png"));
-    document.documentElement.style.setProperty("--bg-1-4-image", asset("basketballrim.png"));
-    document.documentElement.style.setProperty("--bg-1-5-image", asset("tennis net.png"));
-
-    document.getElementById("falling-racket-img").src = assetSrc("7746436c5226655921fece7dccddb486-no-bg-preview (carve.photos).png");
-    document.getElementById("falling-ball-img").src = assetSrc("i-no-bg-preview (carve.photos).png");
-    document.getElementById("falling-cup-img").src = assetSrc("golf stick.png");
+    document.getElementById("falling-racket-img").src = "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/shuttlecock.png";
+    document.getElementById("falling-ball-img").src = "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/medals.png";
+    document.getElementById("falling-cup-img").src = "https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac8/assets/golf%20stick.png";
 
     document.addEventListener("DOMContentLoaded", function () {
       var layer1 = document.getElementById("parallax-bg-1");
