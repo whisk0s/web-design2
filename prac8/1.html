@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Vertical 3D Parallax</title>
+  <style>
+    :root {
+      --accent: #ffe55c;
+      --accent-2: #ffffff;
+      --text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      --panel: rgba(9, 24, 56, 0.64);
+      --panel-border: rgba(255, 255, 255, 0.2);
+      --body-bg-image: none;
+      --bg-3-1-image: none;
+      --bg-3-2-image: none;
+      --bg-3-3-image: none;
+      --bg-3-4-image: none;
+      --bg-2-default-image: none;
+      --bg-2-2-image: none;
+      --bg-2-3-image: none;
+      --bg-2-4-image: none;
+      --bg-2-5-image: none;
+      --bg-2-6-image: none;
+      --bg-1-1-image: none;
+      --bg-1-2-image: none;
+      --bg-1-3-image: none;
+      --bg-1-4-image: none;
+      --bg-1-5-image: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 4600px;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      background:
+        linear-gradient(rgba(2, 18, 43, 0.2), rgba(2, 18, 43, 0.2)),
+        var(--body-bg-image) center top / cover repeat-y;
+      overflow-x: hidden;
+    }
+
+    .page-title {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: min(calc(100% - 32px), 760px);
+      padding: 16px 20px;
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-title h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3.4rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: var(--text-shadow);
+    }
+
+    .page-title p {
+      margin: 8px 0 0;
+      font-size: clamp(0.95rem, 1.7vw, 1.1rem);
+      color: var(--accent);
+    }
+
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #parallax-bg-1 {
+      width: 1200px;
+      z-index: 1;
+    }
+
+    #parallax-bg-2 {
+      width: 1200px;
+      z-index: 2;
+    }
+
+    #parallax-bg-3 {
+      width: 960px;
+      z-index: 3;
+    }
+
+    #parallax-bg-1 div,
+    #parallax-bg-2 div,
+    #parallax-bg-3 div {
+      position: absolute;
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      overflow: visible;
+    }
+
+    .media-slot::before {
+      content: attr(data-label);
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      padding: 12px;
+      border: 2px dashed rgba(255, 255, 255, 0.75);
+      border-radius: 22px;
+      background: rgba(4, 14, 35, 0.5);
+      color: #ffffff;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .layer-note {
+      display: inline-block;
+      margin: 0;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.45);
+      color: var(--accent-2);
+      font-size: clamp(1rem, 1.8vw, 1.55rem);
+      font-weight: bold;
+      line-height: 1.3;
+      text-shadow: var(--text-shadow);
+    }
+
+    #bg-3-1 {
+      width: 520px;
+      height: 520px;
+      top: -20px;
+      right: 40px;
+      background-image: var(--bg-3-1-image);
+    }
+
+    #bg-3-2 {
+      width: 520px;
+      height: 520px;
+      top: 1050px;
+      right: 30px;
+      background-image: var(--bg-3-2-image);
+    }
+
+    #bg-3-3 {
+      width: 760px;
+      height: 620px;
+      top: 1820px;
+      right: 60px;
+      background-image: var(--bg-3-3-image);
+    }
+
+    #bg-3-3 .layer-note {
+      margin-top: 500px;
+      margin-left: 70px;
+    }
+
+    #bg-3-4 {
+      width: 900px;
+      height: 680px;
+      top: 2860px;
+      right: -20px;
+      background-image: var(--bg-3-4-image);
+    }
+
+    #bg-3-4 .layer-note {
+      margin-top: 560px;
+      margin-left: 40px;
+    }
+
+    #parallax-bg-2 div {
+      width: 330px;
+      height: 330px;
+      background-image: var(--bg-2-default-image);
+    }
+
+    #bg-2-1 {
+      top: 130px;
+      left: -180px;
+    }
+
+    #bg-2-2 {
+      top: 320px;
+      right: -40px;
+      background-image: var(--bg-2-2-image);
+    }
+
+    #bg-2-3 {
+      top: 920px;
+      left: -180px;
+      background-image: var(--bg-2-3-image);
+    }
+
+    #bg-2-4 {
+      top: 1220px;
+      right: -110px;
+      background-image: var(--bg-2-4-image);
+    }
+
+    #bg-2-5 {
+      top: 1650px;
+      left: 130px;
+      background-image: var(--bg-2-5-image);
+    }
+
+    #bg-2-5 .layer-note {
+      margin-top: 250px;
+      margin-left: 40px;
+      font-size: 1rem;
+    }
+
+    #bg-2-6 {
+      top: 760px;
+      left: 360px;
+      background-image: var(--bg-2-6-image);
+    }
+
+    #bg-2-6 .layer-note {
+      margin-top: 250px;
+      margin-left: 30px;
+      font-size: 1rem;
+    }
+
+    #parallax-bg-1 div {
+      width: 360px;
+      height: 360px;
+    }
+
+    #bg-1-1 {
+      top: 180px;
+      right: 230px;
+      background-image: var(--bg-1-1-image);
+    }
+
+    #bg-1-2 {
+      top: 460px;
+      left: 0;
+      background-image: var(--bg-1-2-image);
+    }
+
+    #bg-1-3 {
+      top: 920px;
+      right: -120px;
+      background-image: var(--bg-1-3-image);
+    }
+
+    #bg-1-4 {
+      top: 1380px;
+      left: 220px;
+      width: 420px;
+      height: 420px;
+      background-image: var(--bg-1-4-image);
+    }
+
+    #bg-1-4 .layer-note {
+      margin-top: 270px;
+      margin-left: 10px;
+      color: #ffdf80;
+    }
+
+    #bg-1-5 {
+      top: 1240px;
+      left: -150px;
+      background-image: var(--bg-1-5-image);
+    }
+
+    .falling-object {
+      position: fixed;
+      top: -180px;
+      z-index: 8;
+      pointer-events: none;
+    }
+
+    .falling-object img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .falling-object::before {
+      content: attr(data-label);
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border: 2px dashed rgba(255, 255, 255, 0.8);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.35;
+      backdrop-filter: blur(4px);
+    }
+
+    .falling-racket {
+      left: 10%;
+      width: 170px;
+      height: 260px;
+      animation: falling-racket 5s linear infinite;
+    }
+
+    .falling-ball {
+      left: 48%;
+      width: 150px;
+      height: 150px;
+      animation: falling-ball 6.5s linear infinite;
+      animation-delay: 1s;
+    }
+
+    .falling-cup {
+      right: 8%;
+      width: 170px;
+      height: 220px;
+      animation: falling-cup 7.5s linear infinite;
+      animation-delay: 2s;
+    }
+
+    @keyframes falling-racket {
+      0% {
+        transform: translateY(-150px) rotate(-12deg);
+      }
+      100% {
+        transform: translateY(430vh) rotate(18deg);
+      }
+    }
+
+    @keyframes falling-ball {
+      0% {
+        transform: translateY(-120px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(420vh) rotate(360deg);
+      }
+    }
+
+    @keyframes falling-cup {
+      0% {
+        transform: translateY(-180px) rotate(8deg);
+      }
+      100% {
+        transform: translateY(440vh) rotate(-14deg);
+      }
+    }
+
+    .spacer {
+      position: relative;
+      z-index: 0;
+      height: 4600px;
+    }
+
+    @media (max-width: 1024px) {
+      #parallax-bg-1,
+      #parallax-bg-2 {
+        width: 100vw;
+      }
+
+      #parallax-bg-3 {
+        width: min(100vw, 960px);
+      }
+
+      .page-title {
+        width: min(calc(100% - 20px), 700px);
+        top: 10px;
+        padding: 14px 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        min-height: 3600px;
+      }
+
+      .page-title {
+        position: absolute;
+      }
+
+      .falling-object {
+        transform: scale(0.8);
+      }
+
+      #bg-3-1,
+      #bg-3-2,
+      #bg-3-3,
+      #bg-3-4,
+      #bg-2-1,
+      #bg-2-2,
+      #bg-2-3,
+      #bg-2-4,
+      #bg-2-5,
+      #bg-2-6,
+      #bg-1-1,
+      #bg-1-2,
+      #bg-1-3,
+      #bg-1-4,
+      #bg-1-5 {
+        transform: scale(0.72);
+        transform-origin: top center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-title">
+    <h1>Sports Parallax</h1>
+    <p>Вертикальный 3D-параллакс со спортивными объектами</p>
+  </header>
+
+  <div class="falling-object falling-racket" data-label="теннисная ракетка">
+    <img id="falling-racket-img" alt="Воланчик для бадминтона">
+  </div>
+
+  <div class="parallax-bg" id="parallax-bg-3">
+    <div class="media-slot" id="bg-3-1" data-label="главный футбольный мяч"></div>
+    <div class="media-slot" id="bg-3-2" data-label="главный баскетбольный мяч"></div>
+    <div class="media-slot" id="bg-3-3" data-label="главный теннисный объект">
+      <p class="layer-note">Football, basketball and tennis</p>
+    </div>
+    <div class="media-slot" id="bg-3-4" data-label="нижний спортивный коллаж">
+      <p class="layer-note">Champions start with motion</p>
+    </div>
+  </div>
+
+  <div class="parallax-bg" id="parallax-bg-2">
+    <div class="media-slot" id="bg-2-1" data-label="волейбольная сетка"></div>
+    <div class="media-slot" id="bg-2-2" data-label="бейсбольный мяч"></div>
+    <div class="media-slot" id="bg-2-3" data-label="гольф-мяч"></div>
+    <div class="media-slot" id="bg-2-4" data-label="мяч для американского футбола"></div>
+    <div class="media-slot" id="bg-2-5" data-label="шлем">
+      <p class="layer-note">Speed, focus and control</p>
+    </div>
+    <div class="media-slot" id="bg-2-6" data-label="мяч для настольного тенниса">
+      <p class="layer-note">Balls in motion</p>
+    </div>
+  </div>
+
+  <div class="falling-object falling-ball" data-label="падающие медали">
+    <img id="falling-ball-img" alt="Спортивные медали">
+  </div>
+
+  <div class="falling-object falling-cup" data-label="падающая клюшка">
+    <img id="falling-cup-img" alt="Клюшка для гольфа">
+  </div>
+
+  <div class="parallax-bg" id="parallax-bg-1">
+    <div class="media-slot" id="bg-1-1" data-label="теннисная ракетка"></div>
+    <div class="media-slot" id="bg-1-2" data-label="ракетка для пинг-понга"></div>
+    <div class="media-slot" id="bg-1-3" data-label="боксёрские перчатки"></div>
+    <div class="media-slot" id="bg-1-4" data-label="баскетбольное кольцо">
+      <p class="layer-note">More gear, more energy</p>
+    </div>
+    <div class="media-slot" id="bg-1-5" data-label="теннисная сетка"></div>
+  </div>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <script>
+    /*
+      Для Blogspot:
+      1. Загрузите картинки на GitHub Pages, raw.githubusercontent.com или другой хостинг.
+      2. Ниже замените ASSET_BASE на адрес папки, где лежат PNG.
+      3. Пример:
+         var ASSET_BASE = "https://raw.githubusercontent.com/USERNAME/REPO/main/prac8/assets";
+    */
+    var ASSET_BASE = "PASTE_YOUR_ASSET_FOLDER_URL_HERE";
+
+    function asset(name) {
+      return 'url("' + ASSET_BASE + "/" + name + '")';
+    }
+
+    function assetSrc(name) {
+      return ASSET_BASE + "/" + name;
+    }
+
+    document.documentElement.style.setProperty("--body-bg-image", asset("fon.png"));
+    document.documentElement.style.setProperty("--bg-3-1-image", asset("football.png"));
+    document.documentElement.style.setProperty("--bg-3-2-image", asset("basketball.png"));
+    document.documentElement.style.setProperty("--bg-3-3-image", asset("tennisball.png"));
+    document.documentElement.style.setProperty("--bg-3-4-image", asset("footballnet.png"));
+    document.documentElement.style.setProperty("--bg-2-default-image", asset("volleyballnet.png"));
+    document.documentElement.style.setProperty("--bg-2-2-image", asset("baseball.png"));
+    document.documentElement.style.setProperty("--bg-2-3-image", asset("golf.png"));
+    document.documentElement.style.setProperty("--bg-2-4-image", asset("usaball.png"));
+    document.documentElement.style.setProperty("--bg-2-5-image", asset("helmet.png"));
+    document.documentElement.style.setProperty("--bg-2-6-image", asset("pingpongball.png"));
+    document.documentElement.style.setProperty("--bg-1-1-image", asset("tennisracket.png"));
+    document.documentElement.style.setProperty("--bg-1-2-image", asset("pingpongracket.png"));
+    document.documentElement.style.setProperty("--bg-1-3-image", asset("gloves.png"));
+    document.documentElement.style.setProperty("--bg-1-4-image", asset("basketballrim.png"));
+    document.documentElement.style.setProperty("--bg-1-5-image", asset("tennis net.png"));
+
+    document.getElementById("falling-racket-img").src = assetSrc("7746436c5226655921fece7dccddb486-no-bg-preview (carve.photos).png");
+    document.getElementById("falling-ball-img").src = assetSrc("i-no-bg-preview (carve.photos).png");
+    document.getElementById("falling-cup-img").src = assetSrc("golf stick.png");
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var layer1 = document.getElementById("parallax-bg-1");
+      var layer2 = document.getElementById("parallax-bg-2");
+      var layer3 = document.getElementById("parallax-bg-3");
+
+      function parallaxScroll() {
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        layer1.style.top = 0 - scrolled * 0.25 + "px";
+        layer2.style.top = 0 - scrolled * 0.4 + "px";
+        layer3.style.top = 0 - scrolled * 0.75 + "px";
+      }
+
+      parallaxScroll();
+      window.addEventListener("scroll", parallaxScroll, { passive: true });
+    });
+  </script>
+</body>
+</html>
