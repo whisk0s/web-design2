@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sports Vertical 3D Parallax</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #ffe55c;
@@ -40,42 +43,12 @@
     body {
       margin: 0;
       min-height: 4600px;
-      font-family: Arial, sans-serif;
+      font-family: "Manrope", sans-serif;
       color: #ffffff;
       background:
         linear-gradient(rgba(2, 18, 43, 0.2), rgba(2, 18, 43, 0.2)),
         var(--body-bg-image) center top / cover repeat-y;
       overflow-x: hidden;
-    }
-
-    .page-title {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      width: min(calc(100% - 32px), 760px);
-      padding: 16px 20px;
-      border: 1px solid var(--panel-border);
-      border-radius: 18px;
-      background: var(--panel);
-      backdrop-filter: blur(10px);
-      text-align: center;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
-    }
-
-    .page-title h1 {
-      margin: 0;
-      font-size: clamp(1.8rem, 4vw, 3.4rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-shadow: var(--text-shadow);
-    }
-
-    .page-title p {
-      margin: 8px 0 0;
-      font-size: clamp(0.95rem, 1.7vw, 1.1rem);
-      color: var(--accent);
     }
 
     .parallax-bg {
@@ -117,24 +90,19 @@
       inset: 50% auto auto 50%;
       transform: translate(-50%, -50%);
       width: 80%;
-      padding: 12px;
-      border: 2px dashed rgba(255, 255, 255, 0.75);
-      border-radius: 22px;
-      background: rgba(4, 14, 35, 0.5);
       color: #ffffff;
       text-align: center;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: bold;
       line-height: 1.35;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      text-shadow: var(--text-shadow);
     }
 
     .layer-note {
       display: inline-block;
       margin: 0;
-      padding: 10px 14px;
-      border-radius: 14px;
-      background: rgba(0, 0, 0, 0.45);
       color: var(--accent-2);
       font-size: clamp(1rem, 1.8vw, 1.55rem);
       font-weight: bold;
@@ -300,18 +268,14 @@
       inset: 0;
       display: grid;
       place-items: center;
-      padding: 16px;
-      border: 2px dashed rgba(255, 255, 255, 0.8);
-      border-radius: 26px;
-      background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: bold;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       line-height: 1.35;
-      backdrop-filter: blur(4px);
+      text-shadow: var(--text-shadow);
     }
 
     .falling-racket {
@@ -380,20 +344,11 @@
         width: min(100vw, 960px);
       }
 
-      .page-title {
-        width: min(calc(100% - 20px), 700px);
-        top: 10px;
-        padding: 14px 16px;
-      }
     }
 
     @media (max-width: 768px) {
       body {
         min-height: 3600px;
-      }
-
-      .page-title {
-        position: absolute;
       }
 
       .falling-object {
@@ -422,12 +377,7 @@
   </style>
 </head>
 <body>
-  <header class="page-title">
-    <h1>Sports Parallax</h1>
-    <p>Вертикальный 3D-параллакс со спортивными объектами</p>
-  </header>
-
-  <div class="falling-object falling-racket" data-label="падающий воланчик">
+  <div class="falling-object falling-racket" data-label="Воланчик">
     <img id="falling-racket-img" alt="Воланчик для бадминтона">
   </div>
 
@@ -437,9 +387,7 @@
     <div class="media-slot" id="bg-3-3" data-label="главный теннисный объект">
       <p class="layer-note">Футбол, баскетбол и теннис</p>
     </div>
-    <div class="media-slot" id="bg-3-4" data-label="футбольная сетка">
-      <p class="layer-note">Точность удара и движение вперёд</p>
-    </div>
+    <div class="media-slot" id="bg-3-4" data-label="футбольная сетка"></div>
   </div>
 
   <div class="parallax-bg" id="parallax-bg-2">
@@ -448,10 +396,8 @@
     <div class="media-slot" id="bg-2-3" data-label="гольф-мяч"></div>
     <div class="media-slot" id="bg-2-4" data-label="мяч для американского футбола"></div>
     <div class="media-slot" id="bg-2-5" data-label="шлем">
-      <p class="layer-note">Скорость, фокус и защита</p>
     </div>
     <div class="media-slot" id="bg-2-6" data-label="мяч для настольного тенниса">
-      <p class="layer-note">Спортивные мячи в движении</p>
     </div>
   </div>
 
