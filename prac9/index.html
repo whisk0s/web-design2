@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Sneaker Parallax</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #e9fdff;
+      --muted: rgba(233, 253, 255, 0.82);
+      --line: rgba(255, 255, 255, 0.14);
+      --card: rgba(7, 15, 28, 0.56);
+      --card-strong: rgba(7, 15, 28, 0.74);
+      --accent: #ff6542;
+      --accent-soft: #9fe7ff;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 4000px;
+      overflow-x: hidden;
+      font-family: "Manrope", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(5, 10, 20, 0.74), rgba(5, 10, 20, 0.24)),
+        url("./assets/fon.png") center top / cover no-repeat;
+      color: var(--text);
+    }
+
+    #container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400%;
+      height: 100vh;
+      display: flex;
+    }
+
+    #container .section {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 88px 96px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container .section .content {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 1320px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      padding: 42px 12px;
+    }
+
+    #container .section .content .text {
+      margin-right: 0;
+      max-width: 450px;
+      color: var(--text);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent-soft);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    #container .section .content .text h1 {
+      margin: 0 0 16px;
+      padding: 0;
+      font-size: clamp(2.3rem, 3vw, 4.1rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    #container .section .content .text h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .lead {
+      margin: 0 0 18px;
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .details {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .details li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .details li::before {
+      content: "";
+      position: absolute;
+      top: 0.72em;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ffd27a);
+      box-shadow: 0 0 16px rgba(255, 101, 66, 0.42);
+    }
+
+    #container .section .content img {
+      min-width: 400px;
+      width: min(45vw, 660px);
+      max-width: 100%;
+      max-height: 76vh;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.34));
+    }
+
+    #section-1 .content {
+      transform: translateY(-12px);
+    }
+
+    #section-2 .content {
+      transform: translateY(10px);
+    }
+
+    #section-3 .content {
+      transform: translateY(-6px);
+    }
+
+    #section-4 .content {
+      transform: translateY(14px);
+    }
+
+    @media (max-width: 1100px) {
+      #container .section {
+        padding: 44px;
+      }
+
+      #container .section .content {
+        gap: 28px;
+        padding: 28px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      #container .section .content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      #container .section .content img {
+        min-width: 280px;
+        width: min(100%, 460px);
+        max-height: 42vh;
+      }
+
+      #container .section .content .text {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        height: 3600px;
+      }
+
+      #container .section {
+        padding: 18px;
+      }
+
+      #container .section .content {
+        padding: 22px 12px;
+      }
+
+      #container .section .content .text h1 {
+        font-size: 2rem;
+      }
+
+      .lead,
+      .details {
+        font-size: 0.94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="section" id="section-1">
+      <div class="content">
+        <div class="text">
+          <p class="eyebrow">Drop 01</p>
+          <h1><a href="#">Air Jordan 1 Low Black Red</a></h1>
+          <p class="lead">
+            Красно-чёрные Air Jordan 1 Low ощущаются как классический рок-альбом:
+            знакомый силуэт, который всё равно каждый раз звучит мощно.
+          </p>
+          <ul class="details">
+            <li>Низкая версия легендарных Jordan 1 делает пару легче и универсальнее на каждый день.</li>
+            <li>Красно-чёрная палитра отсылает к Chicago Bulls и баскетбольному наследию Michael Jordan.</li>
+            <li>Контрастный Swoosh и логотип Wings дают модели тот самый дерзкий уличный характер.</li>
+          </ul>
+        </div>
+        <img src="./assets/1.png" alt="Красно-чёрные Air Jordan 1 Low">
+      </div>
+    </div>
+
+    <div class="section" id="section-2">
+      <div class="content">
+        <div class="text">
+          <p class="eyebrow">Drop 02</p>
+          <h1><a href="#">Air Jordan 1 Mid White Red Green</a></h1>
+          <p class="lead">
+            Air Jordan 1 Mid держат идеальный баланс между классикой и комфортом:
+            не слишком громко, но точно не скучно.
+          </p>
+          <ul class="details">
+            <li>Белая база освежает пару, красные панели добавляют энергии, а тёмно-зелёный Swoosh делает образ глубже.</li>
+            <li>Средняя высота хорошо поддерживает стопу и остаётся удобной для ежедневной носки.</li>
+            <li>Именно Mid часто выбирают те, кому нужна менее мейнстримная версия культового силуэта.</li>
+          </ul>
+        </div>
+        <img src="./assets/2.png" alt="Air Jordan 1 Mid бело-красно-зелёные">
+      </div>
+    </div>
+
+    <div class="section" id="section-3">
+      <div class="content">
+        <div class="text">
+          <p class="eyebrow">Drop 03</p>
+          <h1><a href="#">Air Jordan 1 Mid SE White Black Khaki</a></h1>
+          <p class="lead">
+            Air Jordan 1 Mid SE в бело-чёрно-хаки выглядят как городской камуфляж
+            нового поколения: спокойно, уверенно и очень собранно.
+          </p>
+          <ul class="details">
+            <li>Версия SE добавляет больше внимания к материалам, деталям и цветовым переходам.</li>
+            <li>Белый, чёрный и хаки собирают образ без лишнего шума, но с сильным визуальным характером.</li>
+            <li>Эта пара ощущается как lifestyle-модель с баскетбольной ДНК, а не просто спортивный релиз.</li>
+          </ul>
+        </div>
+        <img src="./assets/3.png" alt="Air Jordan 1 Mid SE бело-чёрно-хаки">
+      </div>
+    </div>
+
+    <div class="section" id="section-4">
+      <div class="content">
+        <div class="text">
+          <p class="eyebrow">Drop 04</p>
+          <h1><a href="#">Air Jordan 1 Low 85 White Blue</a></h1>
+          <p class="lead">
+            Air Jordan 1 Low 85 в бело-синем цвете работают как аккуратный мост
+            обратно в 1985 год, к самому началу истории линейки.
+          </p>
+          <ul class="details">
+            <li>Индекс 85 означает более точный силуэт, близкий к оригинальным пропорциям первой версии Jordan 1.</li>
+            <li>Белый и насыщенный синий дают свежую, чистую и почти архивную эстетику.</li>
+            <li>Эта модель ценится за аутентичность, премиальные материалы и внимание к деталям, которые фанаты считывают сразу.</li>
+          </ul>
+        </div>
+        <img src="./assets/4.png" alt="Air Jordan 1 Low 85 бело-синие">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
+    $(window).scroll(function () {
+      var scroll = $(window).scrollTop();
+      var dh = $(document).height();
+      var wh = $(window).height();
+      var value = (scroll / (dh - wh)) * 100;
+      $("#container").css("left", -value * 3 + "%");
+    });
+  </script>
+</body>
+</html>
