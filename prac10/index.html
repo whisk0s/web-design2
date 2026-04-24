@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morphism Piano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 20px 64px;
+      font-family: "Manrope", sans-serif;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(80, 80, 80, 0.2), transparent 38%),
+        linear-gradient(180deg, #121212, #050505 56%, #0d0d0d);
+      color: #f3f0e7;
+      overflow-x: auto;
+    }
+
+    #piano {
+      position: relative;
+      width: 1200px;
+      margin-top: 150px;
+      padding: 48px 30px 34px;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, #2c2c2c 0%, #161616 38%, #090909 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.55),
+        inset 0 2px 2px rgba(255, 255, 255, 0.08),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    #piano::before {
+      content: "";
+      position: absolute;
+      inset: 18px 18px auto;
+      height: 180px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(90deg, rgba(255, 214, 128, 0.18), rgba(255, 255, 255, 0.02), rgba(255, 214, 128, 0.14));
+      pointer-events: none;
+    }
+
+    .piano-title {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #d8c28d;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .piano-illustration {
+      position: absolute;
+      top: -370px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1040px, calc(100% - 32px));
+      max-width: 1040px;
+      pointer-events: none;
+      filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.4));
+    }
+
+    .keyboard-wrap {
+      position: relative;
+      z-index: 2;
+      margin-top: 180px;
+      padding: 20px 18px 24px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, #171717, #0a0a0a);
+      box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.04),
+        inset 0 -10px 16px rgba(0, 0, 0, 0.55);
+    }
+
+    ol {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0;
+      vertical-align: top;
+    }
+
+    #leftHand {
+      margin-right: -20px;
+    }
+
+    #rightHand {
+      margin-left: -20px;
+    }
+
+    #audio {
+      position: absolute;
+      z-index: -1;
+      background-color: transparent;
+    }
+
+    li {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-right: -1px;
+      margin-left: -2px;
+      padding: 220px 30px 26px;
+      border: 1px solid #b9b4a8;
+      border-radius: 0 0 10px 10px;
+      background:
+        linear-gradient(180deg, #fffdf4 0%, #f1ecde 70%, #ddd5c1 100%);
+      color: rgba(35, 35, 35, 0.7);
+      font-size: 16px;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      box-shadow:
+        -3px 7px 4px rgba(12, 12, 12, 0.6),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.05s ease, box-shadow 0.05s ease, filter 0.12s ease;
+    }
+
+    li:hover {
+      filter: brightness(1.02);
+    }
+
+    li:active,
+    li.is-active {
+      transform: translateY(3px);
+      box-shadow:
+        -1px 2px 3px rgba(12, 12, 12, 0.6),
+        inset 0 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .black-key {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      margin-left: -31px;
+      padding: 150px 12px 12px;
+      border-style: solid;
+      border-width: 0 6px 12px;
+      border-color: #000;
+      border-bottom-color: #2a2a2a;
+      border-radius: 0 0 8px 8px;
+      background:
+        linear-gradient(180deg, #444 0%, #151515 26%, #050505 100%);
+      color: rgba(255, 232, 171, 0.82);
+      box-shadow:
+        inset 0 -2px 4px rgba(255, 255, 255, 0.06),
+        0 8px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .black-key:hover {
+      color: #fff000;
+    }
+
+    .black-key:active,
+    .black-key.is-active {
+      transform: translateY(2px);
+      border-bottom-width: 8px;
+      box-shadow:
+        inset 0 1px 3px rgba(255, 255, 255, 0.05),
+        0 3px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .white-key {
+      margin: 0;
+    }
+
+    #C {
+      border-top-left-radius: 10px;
+    }
+
+    #B1 {
+      border-top-right-radius: 10px;
+    }
+
+    .hint {
+      position: relative;
+      z-index: 2;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1280px) {
+      body {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="piano">
+    <img class="piano-illustration" src="./assets/pianokeys.png" alt="Верхняя часть пианино">
+    <p class="piano-title">Morphism Piano</p>
+
+    <div class="keyboard-wrap">
+      <ol id="leftHand">
+        <li class="white-key" id="C" data-note="noteC" data-key="q">C</li>
+        <li class="black-key" id="Cs" data-note="noteCs" data-key="2">C#</li>
+        <li class="white-key" id="D" data-note="noteD" data-key="w">D</li>
+        <li class="black-key" id="Ds" data-note="noteDs" data-key="3">D#</li>
+        <li class="white-key" id="E" data-note="noteE" data-key="e">E</li>
+        <li class="white-key" id="F" data-note="noteF" data-key="r">F</li>
+        <li class="black-key" id="Fs" data-note="noteFs" data-key="5">F#</li>
+        <li class="white-key" id="G" data-note="noteG" data-key="t">G</li>
+        <li class="black-key" id="Gs" data-note="noteGs" data-key="6">G#</li>
+        <li class="white-key" id="A" data-note="noteA" data-key="y">A</li>
+        <li class="black-key" id="As" data-note="noteAs" data-key="7">A#</li>
+        <li class="white-key" id="B" data-note="noteB" data-key="u">B</li>
+      </ol>
+
+      <ol id="rightHand">
+        <li class="white-key" id="C1" data-note="noteC1" data-key="i">C</li>
+        <li class="black-key" id="C1s" data-note="noteC1s" data-key="9">C#</li>
+        <li class="white-key" id="D1" data-note="noteD1" data-key="o">D</li>
+        <li class="black-key" id="D1s" data-note="noteD1s" data-key="0">D#</li>
+        <li class="white-key" id="E1" data-note="noteE1" data-key="p">E</li>
+        <li class="white-key" id="F1" data-note="noteF1" data-key="[">F</li>
+        <li class="black-key" id="F1s" data-note="noteF1s" data-key="]">F#</li>
+        <li class="white-key" id="G1" data-note="noteG1" data-key="a">G</li>
+        <li class="black-key" id="G1s" data-note="noteG1s" data-key="z">G#</li>
+        <li class="white-key" id="A1" data-note="noteA1" data-key="s">A</li>
+        <li class="black-key" id="A1s" data-note="noteA1s" data-key="x">A#</li>
+        <li class="white-key" id="B1" data-note="noteB1" data-key="d">B</li>
+      </ol>
+    </div>
+
+    <p class="hint">Клавиши работают по клику. Дополнительно можно играть с клавиатуры.</p>
+
+    <div id="audio">
+      <audio id="noteC" preload="auto"><source src="./assets/01.mp3" type="audio/mpeg"></audio>
+      <audio id="noteCs" preload="auto"><source src="./assets/02.mp3" type="audio/mpeg"></audio>
+      <audio id="noteD" preload="auto"><source src="./assets/03.mp3" type="audio/mpeg"></audio>
+      <audio id="noteDs" preload="auto"><source src="./assets/04.mp3" type="audio/mpeg"></audio>
+      <audio id="noteE" preload="auto"><source src="./assets/05.mp3" type="audio/mpeg"></audio>
+      <audio id="noteF" preload="auto"><source src="./assets/06.mp3" type="audio/mpeg"></audio>
+      <audio id="noteFs" preload="auto"><source src="./assets/07.mp3" type="audio/mpeg"></audio>
+      <audio id="noteG" preload="auto"><source src="./assets/08.mp3" type="audio/mpeg"></audio>
+      <audio id="noteGs" preload="auto"><source src="./assets/09.mp3" type="audio/mpeg"></audio>
+      <audio id="noteA" preload="auto"><source src="./assets/10.mp3" type="audio/mpeg"></audio>
+      <audio id="noteAs" preload="auto"><source src="./assets/11.mp3" type="audio/mpeg"></audio>
+      <audio id="noteB" preload="auto"><source src="./assets/12.mp3" type="audio/mpeg"></audio>
+      <audio id="noteC1" preload="auto"><source src="./assets/13.mp3" type="audio/mpeg"></audio>
+      <audio id="noteC1s" preload="auto"><source src="./assets/14.mp3" type="audio/mpeg"></audio>
+      <audio id="noteD1" preload="auto"><source src="./assets/15.mp3" type="audio/mpeg"></audio>
+      <audio id="noteD1s" preload="auto"><source src="./assets/16.mp3" type="audio/mpeg"></audio>
+      <audio id="noteE1" preload="auto"><source src="./assets/17.mp3" type="audio/mpeg"></audio>
+      <audio id="noteF1" preload="auto"><source src="./assets/18.mp3" type="audio/mpeg"></audio>
+      <audio id="noteF1s" preload="auto"><source src="./assets/19.mp3" type="audio/mpeg"></audio>
+      <audio id="noteG1" preload="auto"><source src="./assets/20.mp3" type="audio/mpeg"></audio>
+      <audio id="noteG1s" preload="auto"><source src="./assets/21.mp3" type="audio/mpeg"></audio>
+      <audio id="noteA1" preload="auto"><source src="./assets/22.mp3" type="audio/mpeg"></audio>
+      <audio id="noteA1s" preload="auto"><source src="./assets/23.mp3" type="audio/mpeg"></audio>
+      <audio id="noteB1" preload="auto"><source src="./assets/24.mp3" type="audio/mpeg"></audio>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      function activateKey($key) {
+        $key.addClass("is-active");
+        window.setTimeout(function () {
+          $key.removeClass("is-active");
+        }, 120);
+      }
+
+      function playKey($key) {
+        var noteId = $key.data("note");
+        var audio = $("#" + noteId)[0];
+
+        if (!audio) {
+          return;
+        }
+
+        audio.currentTime = 0;
+        audio.play();
+        activateKey($key);
+      }
+
+      $("li").on("click", function () {
+        playKey($(this));
+      });
+
+      $(document).on("keydown", function (event) {
+        var key = event.key.toLowerCase();
+        var $target = $("li").filter(function () {
+          return ($(this).data("key") + "").toLowerCase() === key;
+        }).first();
+
+        if ($target.length) {
+          playKey($target);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
