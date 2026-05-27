@@ -1,0 +1,178 @@
+<!--DOCTYPE html-->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Morphism Piano</title>
+  <style>
+    #piano {
+      width: 1200px;
+      margin-top: 150px;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    img {
+      width: 1000px;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    body {
+      text-align: center;
+      background-color: white;
+    }
+
+    ol {
+      position: relative;
+      display: inline-block;
+      margin-top: 0px;
+    }
+
+    #leftHand {
+      margin-right: -20px;
+    }
+
+    #rightHand {
+      margin-left: -20px;
+    }
+
+    #audio {
+      z-index: -1;
+      background-color: transparent;
+    }
+
+    li {
+      position: relative;
+      background-color: #FFFFF0;
+      z-index: 1;
+      padding: 220px 30px 100px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      margin-right: -1px;
+      margin-left: -2px;
+      border-radius: 0px 0px 7px 7px;
+      color: transparent;
+      box-shadow: -3px 7px 4px #2a2a2a;
+    }
+
+    li:active {
+      box-shadow: -1px 2px 3px #2a2a2a;
+    }
+
+    .black-key {
+      position: absolute;
+      z-index: 2;
+      background-color: #1d1d1d;
+      padding: 230px 12px 12px;
+      top: 0px;
+      margin-left: -31px;
+      box-shadow: none;
+      border-width: 0px 6px 12px;
+      border-color: #000;
+      border-bottom-color: #2a2a2a;
+    }
+
+    .black-key:hover {
+      color: #FFF000;
+    }
+
+    .black-key:active {
+      border-bottom-width: 8px;
+      box-shadow: none;
+    }
+
+    .white-key {
+      margin: 0;
+    }
+
+    #C {
+      border-top-left-radius: 7px;
+    }
+
+    #B1 {
+      border-top-right-radius: 7px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="piano">
+  <img src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/pianokeys.png">
+
+  <ol id="leftHand">
+    <li class="white-key" id="C"   data-note='noteC'  data-key='81'>C</li>
+    <li class="black-key" id="Cs"  data-note='noteCs'>C#</li>
+    <li class="white-key" id="D"   data-note='noteD'>D</li>
+    <li class="black-key" id="Ds"  data-note='noteDs'>D#</li>
+    <li class="white-key" id="E"   data-note='noteE'>E</li>
+    <li class="white-key" id="F"   data-note='noteF'>F</li>
+    <li class="black-key" id="Fs"  data-note='noteFs'>F#</li>
+    <li class="white-key" id="G"   data-note='noteG'>G</li>
+    <li class="black-key" id="Gs"  data-note='noteGs'>G#</li>
+    <li class="white-key" id="A"   data-note='noteA'>A</li>
+    <li class="black-key" id="As"  data-note='noteAs'>A#</li>
+    <li class="white-key" id="B"   data-note='noteB'>B</li>
+  </ol>
+
+  <ol id="rightHand">
+    <li class="white-key" id="C1"  data-note='noteC1'>C</li>
+    <li class="black-key" id="C1s" data-note='noteC1s'>C#</li>
+    <li class="white-key" id="D1"  data-note='noteD1'>D</li>
+    <li class="black-key" id="D1s" data-note='noteD1s'>D#</li>
+    <li class="white-key" id="E1"  data-note='noteE1'>E</li>
+    <li class="white-key" id="F1"  data-note='noteF1'>F</li>
+    <li class="black-key" id="F1s" data-note='noteF1s'>F#</li>
+    <li class="white-key" id="G1"  data-note='noteG1'>G</li>
+    <li class="black-key" id="G1s" data-note='noteG1s'>G#</li>
+    <li class="white-key" id="A1"  data-note='noteA1'>A</li>
+    <li class="black-key" id="A1s" data-note='noteA1s'>A#</li>
+    <li class="white-key" id="B1"  data-note='noteB1'>B</li>
+  </ol>
+</div>
+
+<div id="audio">
+  <audio id="noteC"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/01.mp3" type="audio/mpeg"></audio>
+  <audio id="noteCs"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/02.mp3" type="audio/mpeg"></audio>
+  <audio id="noteD"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/03.mp3" type="audio/mpeg"></audio>
+  <audio id="noteDs"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/04.mp3" type="audio/mpeg"></audio>
+  <audio id="noteE"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/05.mp3" type="audio/mpeg"></audio>
+  <audio id="noteF"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/06.mp3" type="audio/mpeg"></audio>
+  <audio id="noteFs"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/07.mp3" type="audio/mpeg"></audio>
+  <audio id="noteG"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/08.mp3" type="audio/mpeg"></audio>
+  <audio id="noteGs"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/09.mp3" type="audio/mpeg"></audio>
+  <audio id="noteA"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/10.mp3" type="audio/mpeg"></audio>
+  <audio id="noteAs"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/11.mp3" type="audio/mpeg"></audio>
+  <audio id="noteB"   preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/12.mp3" type="audio/mpeg"></audio>
+  <audio id="noteC1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/13.mp3" type="audio/mpeg"></audio>
+  <audio id="noteC1s" preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/14.mp3" type="audio/mpeg"></audio>
+  <audio id="noteD1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/15.mp3" type="audio/mpeg"></audio>
+  <audio id="noteD1s" preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/16.mp3" type="audio/mpeg"></audio>
+  <audio id="noteE1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/17.mp3" type="audio/mpeg"></audio>
+  <audio id="noteF1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/18.mp3" type="audio/mpeg"></audio>
+  <audio id="noteF1s" preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/19.mp3" type="audio/mpeg"></audio>
+  <audio id="noteG1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/20.mp3" type="audio/mpeg"></audio>
+  <audio id="noteG1s" preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/21.mp3" type="audio/mpeg"></audio>
+  <audio id="noteA1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/22.mp3" type="audio/mpeg"></audio>
+  <audio id="noteA1s" preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/23.mp3" type="audio/mpeg"></audio>
+  <audio id="noteB1"  preload='auto'><source src="https://raw.githubusercontent.com/whisk0s/web-design2/refs/heads/main/prac10/assets/24.mp3" type="audio/mpeg"></audio>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('li').click(function() {
+      $('#'+$(this).data('note')).prop('currentTime',0);
+      $('#'+$(this).data('note'))[0].play();
+    })
+  })
+</script>
+
+</body>
+</html>

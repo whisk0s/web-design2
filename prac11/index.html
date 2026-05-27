@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Germany Cities</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap');
+
+      :root {
+        --base-background-color: #e0e5ec;
+        --base-text-color: #4a5568;
+        --reflection: rgba(255, 255, 255, 0.9);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      body {
+        display: flex;
+        margin-left: 70px;
+        margin-top: -25%;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: var(--base-background-color);
+        overflow-x: hidden;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 1100px;
+      }
+
+      .container .card {
+        width: 320px;
+        margin: 20px;
+        padding: 40px 30px;
+        background: var(--base-background-color);
+        align-items: center;
+        border-radius: 40px;
+        box-shadow: -6px -6px 20px var(--reflection), 6px 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .container .card:hover {
+        box-shadow: inset -6px -6px 10px var(--reflection), inset 6px 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .container .card .imgNeoMorph {
+        position: relative;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto;
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.1),
+          0 0 0 5px var(--base-background-color),
+          6px 6px 20px rgba(0, 0, 0, 0.5),
+          -10px -8px 20px rgba(255,255,255,0.5);
+      }
+
+      .container .card .imgNeoMorph img,
+      .container .card .imgNeoMorph svg {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+
+      .container .card .contentNeoMorph {
+        position: relative;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .container .card .contentNeoMorph h2 {
+        color: var(--base-text-color);
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+      }
+
+      .container .card .contentNeoMorph p {
+        color: var(--base-text-color);
+      }
+
+      .container .card .contentNeoMorph a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 15px;
+        border-radius: 40px;
+        color: var(--base-text-color);
+        font-size: 16px;
+        text-decoration: none;
+        box-shadow: -6px -6px 20px var(--reflection), 6px 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .container .card .contentNeoMorph a:hover {
+        box-shadow: inset -4px -4px 10px var(--reflection), inset 4px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .container .card a:hover span {
+        display: block;
+        transform: scale(0.98);
+      }
+
+      .text-block {
+        font-size: 16px;
+        color: var(--base-text-color);
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 40px;
+        box-shadow: -6px -6px 20px var(--reflection), 6px 6px 20px rgba(0, 0, 0, 0.1);
+        height: 200px;
+        display: flex;
+        padding: 10px 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container .card p {
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <!-- Berlin -->
+      <div class="card">
+        <div class="imgNeoMorph">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="50" fill="#c5cdd8"/>
+            <rect x="48" y="20" width="4" height="45" fill="#2d3748"/>
+            <circle cx="50" cy="35" r="10" fill="#2d3748"/>
+            <rect x="49" y="15" width="2" height="8" fill="#2d3748"/>
+            <rect x="20" y="58" width="5" height="20" fill="#2d3748"/>
+            <rect x="28" y="58" width="5" height="20" fill="#2d3748"/>
+            <rect x="36" y="58" width="5" height="20" fill="#2d3748"/>
+            <rect x="18" y="55" width="26" height="5" rx="1" fill="#2d3748"/>
+            <rect x="63" y="60" width="8" height="18" fill="#2d3748"/>
+            <rect x="73" y="65" width="6" height="13" fill="#2d3748"/>
+            <rect x="10" y="78" width="80" height="4" rx="2" fill="#2d3748"/>
+          </svg>
+        </div>
+        <div class="contentNeoMorph">
+          <h2>Berlin</h2>
+          <p>Berlin is the capital and largest city of Germany by both area and population. Its rich history, vibrant culture, and modern architecture make it one of Europe's most visited cities.</p>
+          <a href="#berlin"><span>Read More</span></a>
+        </div>
+      </div>
+
+      <!-- Munich -->
+      <div class="card">
+        <div class="imgNeoMorph">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="50" fill="#c5cdd8"/>
+            <rect x="22" y="35" width="14" height="42" fill="#2d3748"/>
+            <ellipse cx="29" cy="35" rx="7" ry="10" fill="#2d3748"/>
+            <rect x="55" y="35" width="14" height="42" fill="#2d3748"/>
+            <ellipse cx="62" cy="35" rx="7" ry="10" fill="#2d3748"/>
+            <rect x="30" y="52" width="31" height="25" fill="#2d3748"/>
+            <rect x="38" y="56" width="5" height="7" rx="2" fill="#c5cdd8"/>
+            <rect x="48" y="56" width="5" height="7" rx="2" fill="#c5cdd8"/>
+            <rect x="10" y="77" width="80" height="4" rx="2" fill="#2d3748"/>
+          </svg>
+        </div>
+        <div class="contentNeoMorph">
+          <h2>Munich</h2>
+          <p>Munich is the capital of Bavaria and the third-largest city in Germany. Known for Oktoberfest, world-class museums, and the famous twin-towered Frauenkirche cathedral.</p>
+          <a href="#munich"><span>Read More</span></a>
+        </div>
+      </div>
+
+      <!-- Hamburg -->
+      <div class="card">
+        <div class="imgNeoMorph">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="50" fill="#c5cdd8"/>
+            <rect x="30" y="55" width="40" height="20" fill="#2d3748"/>
+            <path d="M28 55 Q35 38 40 48 Q45 38 50 45 Q55 35 60 45 Q65 38 72 55 Z" fill="#2d3748"/>
+            <rect x="14" y="30" width="3" height="48" fill="#2d3748"/>
+            <rect x="14" y="30" width="22" height="3" fill="#2d3748"/>
+            <line x1="36" y1="33" x2="17" y2="55" stroke="#2d3748" stroke-width="2"/>
+            <path d="M10 78 Q25 74 40 78 Q55 82 70 78 Q82 74 90 78 L90 82 L10 82 Z" fill="#2d3748"/>
+            <rect x="76" y="50" width="5" height="28" fill="#2d3748"/>
+            <polygon points="78.5,40 74,52 83,52" fill="#2d3748"/>
+          </svg>
+        </div>
+        <div class="contentNeoMorph">
+          <h2>Hamburg</h2>
+          <p>Hamburg is Germany's second-largest city and one of Europe's busiest ports. Famous for the Elbphilharmonie concert hall, the historic Speicherstadt warehouse district, and vibrant harbor life.</p>
+          <a href="#hamburg"><span>Read More</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <br><br><br>
+
+    <div class="text-block" id="berlin">
+      Berlin has a long history as the capital of Prussia, the German Empire, the Weimar Republic, and the Third Reich. After World War II the city was divided; West Berlin became an island of Western democracy within East Germany, while East Berlin served as the capital of the German Democratic Republic. The fall of the Berlin Wall in 1989 and German reunification in 1990 transformed the city into a unified metropolis of culture, politics, and innovation.
+    </div>
+
+    <br>
+
+    <div class="text-block" id="munich">
+      Munich, known in German as München, was founded in 1158 by Henry the Lion. Today it is home to some of the world's largest and most renowned companies including BMW, Allianz, and MAN. The city hosts the annual Oktoberfest beer festival, which draws over six million visitors from around the globe. Munich's Marienplatz square, the English Garden — one of the largest urban parks in the world — and the BMW Museum are among its most beloved attractions.
+    </div>
+
+    <br>
+
+    <div class="text-block" id="hamburg">
+      Hamburg, officially the Free and Hanseatic City of Hamburg, has been a major trading hub since the Middle Ages and was a founding member of the Hanseatic League. The city's port, the Hamburg Docks, remains one of Europe's busiest. The Speicherstadt — the world's largest warehouse complex — is now a UNESCO World Heritage Site filled with museums, design studios, and cafés. The Elbphilharmonie, opened in 2017, has become an architectural icon and one of the finest concert halls in the world.
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,363 @@
+\<div id="blogger-glass-root">
+  <style>
+    #blogger-glass-root,
+    #blogger-glass-root * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    #blogger-glass-root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255, 179, 71, 0.35), transparent 28%),
+        radial-gradient(circle at 80% 18%, rgba(255, 0, 102, 0.28), transparent 24%),
+        radial-gradient(circle at 24% 82%, rgba(0, 220, 255, 0.28), transparent 26%),
+        radial-gradient(circle at 76% 78%, rgba(123, 92, 255, 0.28), transparent 24%),
+        linear-gradient(135deg, #08131f, #120a24 45%, #061b22 100%);
+      position: relative;
+      padding: 80px 20px;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+
+    #blogger-glass-root::before,
+    #blogger-glass-root::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      pointer-events: none;
+      opacity: 0.75;
+      animation: bloggerFloatBlob 12s ease-in-out infinite;
+    }
+
+    #blogger-glass-root::before {
+      width: 260px;
+      height: 260px;
+      top: 8%;
+      left: 10%;
+      background: rgba(255, 136, 0, 0.28);
+    }
+
+    #blogger-glass-root::after {
+      width: 320px;
+      height: 320px;
+      right: 8%;
+      bottom: 10%;
+      background: rgba(0, 200, 255, 0.22);
+      animation-delay: -6s;
+    }
+
+    #blogger-glass-root .scene-title {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.82);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    #blogger-glass-root .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 40px 0;
+      width: 1000px;
+      margin-top: 24px;
+      position: relative;
+    }
+
+    #blogger-glass-root .container .box {
+      position: relative;
+      width: 320px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 30px;
+      transition: 0.5s;
+    }
+
+    #blogger-glass-root .container .box::before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 50px;
+      width: 50%;
+      height: 100%;
+      text-decoration: none;
+      background: #fff;
+      border-radius: 8px;
+      transform: skewX(15deg);
+      transition: 0.5s;
+    }
+
+    #blogger-glass-root .container .box::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50px;
+      width: 50%;
+      height: 100%;
+      background: #fff;
+      border-radius: 8px;
+      transform: skewX(15deg);
+      transition: 0.5s;
+      filter: blur(30px);
+    }
+
+    #blogger-glass-root .container .box:hover::before,
+    #blogger-glass-root .container .box:hover::after {
+      transform: skewX(0deg);
+      left: 20px;
+      width: calc(100% - 90px);
+    }
+
+    #blogger-glass-root .container .box:nth-child(1)::before,
+    #blogger-glass-root .container .box:nth-child(1)::after {
+      background: linear-gradient(315deg, #ff9f43, #ee5253);
+    }
+
+    #blogger-glass-root .container .box:nth-child(2)::before,
+    #blogger-glass-root .container .box:nth-child(2)::after {
+      background: linear-gradient(315deg, #00d2ff, #3a7bd5);
+    }
+
+    #blogger-glass-root .container .box:nth-child(3)::before,
+    #blogger-glass-root .container .box:nth-child(3)::after {
+      background: linear-gradient(315deg, #7f5af0, #2cb67d);
+    }
+
+    #blogger-glass-root .container .box:nth-child(4)::before,
+    #blogger-glass-root .container .box:nth-child(4)::after {
+      background: linear-gradient(315deg, #f857a6, #ff5858);
+    }
+
+    #blogger-glass-root .container .box span {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    #blogger-glass-root .container .box span::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: 0.1s;
+      animation: bloggerAnimate 2s ease-in-out infinite;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    #blogger-glass-root .container .box:hover span::before {
+      top: -50px;
+      left: 50px;
+      width: 100px;
+      height: 100px;
+      opacity: 1;
+    }
+
+    #blogger-glass-root .container .box span::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: 0.5s;
+      animation: bloggerAnimate 2s ease-in-out infinite;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      animation-delay: -1s;
+    }
+
+    #blogger-glass-root .container .box:hover span::after {
+      bottom: -50px;
+      right: 50px;
+      width: 100px;
+      height: 100px;
+      opacity: 1;
+    }
+
+    @keyframes bloggerAnimate {
+      0%, 100% {
+        transform: translateY(10px);
+      }
+
+      50% {
+        transform: translateX(-10px);
+      }
+    }
+
+    @keyframes bloggerFloatBlob {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(18px, -22px, 0);
+      }
+    }
+
+    #blogger-glass-root .container .box .content {
+      position: relative;
+      left: 0;
+      width: 100%;
+      min-height: 295px;
+      padding: 20px 32px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      z-index: 1;
+      transition: 0.5s;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #blogger-glass-root .container .box:hover .content {
+      left: -25px;
+      padding: 42px 32px;
+    }
+
+    #blogger-glass-root .container .box .content h2 {
+      font-size: 1.75em;
+      color: white;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    #blogger-glass-root .container .box .content p {
+      font-size: 0.97em;
+      margin-bottom: 14px;
+      line-height: 1.55em;
+      color: rgba(255, 255, 255, 0.9);
+      min-height: 140px;
+    }
+
+    #blogger-glass-root .container .box .content a {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 1em;
+      color: #111;
+      background: white;
+      padding: 10px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 5px;
+      transition: 0.25s ease;
+    }
+
+    #blogger-glass-root .container .box .content a:hover {
+      background: #ffd369;
+      border: 1px solid rgba(255, 0, 88, 0.4);
+      box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+    }
+
+    @media (max-width: 1120px) {
+      #blogger-glass-root .scene-title {
+        position: static;
+        transform: none;
+        margin-bottom: 12px;
+      }
+
+      #blogger-glass-root .container {
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+  </style>
+
+  <p class="scene-title" id="glass-top"></p>
+
+  <div class="container">
+    <div class="box">
+      <span></span>
+      <div class="content">
+        <div>
+          <h2>Hans Zimmer</h2>
+          <p>
+            Hans Zimmer превращает саундтрек в архитектуру эмоций: его музыка
+            звучит масштабно, кинематографично и почти физически ощущается в теле.
+          </p>
+        </div>
+        <a href="#glass-top">Читать ещё</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <span></span>
+      <div class="content">
+        <div>
+          <h2>Ludovico Einaudi</h2>
+          <p>
+            Ludovico Einaudi строит музыку из тишины, повторов и очень точных
+            эмоциональных акцентов.
+          </p>
+        </div>
+        <a href="#glass-top">Читать ещё</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <span></span>
+      <div class="content">
+        <div>
+          <h2>Max Richter</h2>
+          <p>
+            Max Richter соединяет классику, электронику и медитативное настроение
+            так, будто пишет музыку для памяти и времени
+          </p>
+        </div>
+        <a href="#glass-top">Читать ещё</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <span></span>
+      <div class="content">
+        <div>
+          <h2>Olafur Arnalds</h2>
+          <p>
+            Olafur Arnalds работает на стыке неоклассики и атмосферной электроники,
+            создавая музыку, которая звучит очень лично и почти хрупко.
+          </p>
+        </div>
+        <a href="#glass-top">Читать ещё</a>
+      </div>
+    </div>
+  </div>
+</div>
