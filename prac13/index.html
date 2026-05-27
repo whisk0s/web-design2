@@ -6,16 +6,16 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap");
+
+      @layer reset, tokens, base, layout, cube, ui, cards, reveal, theme, responsive;
+
       .box {
         width: 110%;
         padding: 40px;
         position: absolute;
         overflow: hidden;
       }
-
-      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap");
-
-      @layer reset, tokens, base, layout, cube, ui, cards, reveal, theme, responsive;
 
       @layer reset {
         *,
@@ -30,7 +30,6 @@
       @layer tokens {
         :root {
           color-scheme: light;
-
           --dark-bg: #1c1814;
           --dark-fg: #ede8df;
           --dark-muted: #8a7b6e;
@@ -64,7 +63,7 @@
           font-family: var(--font-mono);
           overflow-x: hidden;
           transition: background 0.3s ease, color 0.3s ease;
-          background: url('assets/9val.png');
+          background: url('https://github.com/whisk0s/web-design2/blob/main/prac13/assets/9val.png?raw=true');
           background-size: cover;
           background-attachment: fixed;
           background-position: center;
@@ -246,7 +245,7 @@
 
         #scene_strip {
           position: fixed;
-          right: var(--ui-inset);
+          right: calc(var(--ui-inset) + 0.5rem);
           top: 50%;
           transform: translateY(-50%);
           z-index: var(--z-ui);
@@ -513,207 +512,207 @@
 
     <div class="box">
 
-    <div id="scene">
-      <div id="cube">
-        <div class="face" data-face="top"    data-i="0"><span class="face-ph">TOP</span></div>
-        <div class="face" data-face="front"  data-i="1"><span class="face-ph">FRONT</span></div>
-        <div class="face" data-face="right"  data-i="2"><span class="face-ph">RIGHT</span></div>
-        <div class="face" data-face="back"   data-i="3"><span class="face-ph">BACK</span></div>
-        <div class="face" data-face="left"   data-i="4"><span class="face-ph">LEFT</span></div>
-        <div class="face" data-face="bottom" data-i="5"><span class="face-ph">BOTTOM</span></div>
+      <div id="scene">
+        <div id="cube">
+          <div class="face" data-face="top"    data-i="0"><span class="face-ph">TOP</span></div>
+          <div class="face" data-face="front"  data-i="1"><span class="face-ph">FRONT</span></div>
+          <div class="face" data-face="right"  data-i="2"><span class="face-ph">RIGHT</span></div>
+          <div class="face" data-face="back"   data-i="3"><span class="face-ph">BACK</span></div>
+          <div class="face" data-face="left"   data-i="4"><span class="face-ph">LEFT</span></div>
+          <div class="face" data-face="bottom" data-i="5"><span class="face-ph">BOTTOM</span></div>
+        </div>
       </div>
-    </div>
 
-    <div id="upbar">
-      <div id="upbar_pct">000%</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="prog_fill"></div>
+      <div id="upbar">
+        <div id="upbar_pct">000%</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="prog_fill"></div>
+        </div>
+        <div class="scene-label" id="scene_name">TATAR WEDDING</div>
       </div>
-      <div class="scene-label" id="scene_name">TATAR WEDDING</div>
-    </div>
 
-    <button id="theme_toggle">Theme</button>
+      <button id="theme_toggle">Theme</button>
 
-    <div id="scene_strip">
-      <a class="scene-dot active" href="#s0"></a>
-      <a class="scene-dot" href="#s1"></a>
-      <a class="scene-dot" href="#s2"></a>
-      <a class="scene-dot" href="#s3"></a>
-      <a class="scene-dot" href="#s4"></a>
-      <a class="scene-dot" href="#s5"></a>
-    </div>
+      <div id="scene_strip">
+        <a class="scene-dot active" href="#s0"></a>
+        <a class="scene-dot" href="#s1"></a>
+        <a class="scene-dot" href="#s2"></a>
+        <a class="scene-dot" href="#s3"></a>
+        <a class="scene-dot" href="#s4"></a>
+        <a class="scene-dot" href="#s5"></a>
+      </div>
 
-    <div id="face_caption">
-      <div id="face_caption_num">01</div>
-      <div id="face_caption_name">TATAR WEDDING</div>
-    </div>
+      <div id="face_caption">
+        <div id="face_caption_num">01</div>
+        <div id="face_caption_name">TATAR WEDDING</div>
+      </div>
 
-    <div id="scroll_container">
+      <div id="scroll_container">
 
-      <!-- s0 — Татарская свадьба -->
-      <section id="s0">
-        <div class="text-card">
-          <div class="tag" style="color: Olive">Ранняя работа · Русский музей</div>
-          <h2 style="color: Olive">Татарская<br>свадьба</h2>
-          <p class="body-text">
-            Одна из ранних работ Айвазовского, выполненная акварелью и гуашью в подростковый период. По одной из версий, она могла быть в числе рисунков, отправленных в Академию художеств с просьбой о зачислении. Сейчас рисунок хранится в Русском музее.
-          </p>
-          <div class="button-row">
-            <a class="button" href="#s1">
-              NEXT
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s0 — Татарская свадьба -->
+        <section id="s0">
+          <div class="text-card">
+            <div class="tag" style="color: Olive">Ранняя работа · Русский музей</div>
+            <h2 style="color: Olive">Татарская<br>свадьба</h2>
+            <p class="body-text">
+              Одна из ранних работ Айвазовского, выполненная акварелью и гуашью в подростковый период. По одной из версий, она могла быть в числе рисунков, отправленных в Академию художеств с просьбой о зачислении. Сейчас рисунок хранится в Русском музее.
+            </p>
+            <div class="button-row">
+              <a class="button" href="#s1">
+                NEXT
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- s1 — Лунная ночь на Капри -->
-      <section id="s1">
-        <div class="text-card right">
-          <div class="tag" style="color: DarkOrange">1841 · Неаполитанский залив</div>
-          <h2 style="color: DarkOrange">Лунная ночь<br>на Капри</h2>
-          <p class="body-text">
-            Только окончивший Академию Айвазовский отправился в Европу и был впечатлён красотой Неаполитанского залива. Корабль со спущенными парусами, лунная дорожка, контрастная палитра синего и жёлтого — картина погружает в романтическую атмосферу.
-          </p>
-          <div class="button-row">
-            <a class="button-back" href="#s0">
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M11 6H1M6 11L1 6l5-5"></path>
-              </svg>
-              BACK
-            </a>
-            <a class="button" href="#s2">
-              NEXT
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s1 — Лунная ночь на Капри -->
+        <section id="s1">
+          <div class="text-card right">
+            <div class="tag" style="color: DarkOrange">1841 · Неаполитанский залив</div>
+            <h2 style="color: DarkOrange">Лунная ночь<br>на Капри</h2>
+            <p class="body-text">
+              Только окончивший Академию Айвазовский был впечатлён красотой Неаполитанского залива. Корабль со спущенными парусами, лунная дорожка, контрастная палитра синего и жёлтого — картина погружает в романтическую атмосферу.
+            </p>
+            <div class="button-row">
+              <a class="button-back" href="#s0">
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M11 6H1M6 11L1 6l5-5"></path>
+                </svg>
+                BACK
+              </a>
+              <a class="button" href="#s2">
+                NEXT
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- s2 — Лазоревый грот -->
-      <section id="s2">
-        <div class="text-card">
-          <div class="tag" style="color: OrangeRed">1841 · Остров Капри</div>
-          <h2 style="color: OrangeRed">Лазоревый<br>грот. Неаполь</h2>
-          <p class="body-text">
-            На небольшом полотне 40×64 см — морской грот в скале, достопримечательность острова Капри. Айвазовский тщательно работает с текстурами: преломления света, шероховатость стен, гладь воды. Зритель будто чувствует прохладу пещер и свежесть воды.
-          </p>
-          <div class="button-row">
-            <a class="button-back" href="#s1">
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M11 6H1M6 11L1 6l5-5"></path>
-              </svg>
-              BACK
-            </a>
-            <a class="button" href="#s3">
-              NEXT
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s2 — Лазоревый грот -->
+        <section id="s2">
+          <div class="text-card">
+            <div class="tag" style="color: OrangeRed">1841 · Остров Капри</div>
+            <h2 style="color: OrangeRed">Лазоревый<br>грот. Неаполь</h2>
+            <p class="body-text">
+              На небольшом полотне 40×64 см — морской грот в скале острова Капри. Айвазовский тщательно работает с текстурами: преломления света, шероховатость стен, гладь воды. Зритель будто чувствует прохладу пещер и свежесть воды.
+            </p>
+            <div class="button-row">
+              <a class="button-back" href="#s1">
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M11 6H1M6 11L1 6l5-5"></path>
+                </svg>
+                BACK
+              </a>
+              <a class="button" href="#s3">
+                NEXT
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- s3 — Пётр I при Красной Горке -->
-      <section id="s3">
-        <div class="text-card right">
-          <div class="tag" style="color: DarkKhaki">1846 · Историческое полотно</div>
-          <h2 style="color: DarkKhaki">Пётр I<br>при Красной Горке</h2>
-          <p class="body-text">
-            В основе — реальное событие 1710 года: Пётр I, рискуя жизнью, доплыл до берега и развёл костёр, чтобы указать кораблям безопасное направление. Мощная стихия, бушующее море и уверенная фигура императора у яркого пламени костра.
-          </p>
-          <div class="button-row">
-            <a class="button-back" href="#s2">
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M11 6H1M6 11L1 6l5-5"></path>
-              </svg>
-              BACK
-            </a>
-            <a class="button" href="#s4">
-              NEXT
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s3 — Пётр I при Красной Горке -->
+        <section id="s3">
+          <div class="text-card right">
+            <div class="tag" style="color: DarkKhaki">1846 · Историческое полотно</div>
+            <h2 style="color: DarkKhaki">Пётр I<br>при Красной Горке</h2>
+            <p class="body-text">
+              В основе — реальное событие 1710 года: Пётр I рискуя жизнью доплыл до берега и развёл костёр, указав кораблям безопасное направление. Мощная стихия и уверенная фигура императора у яркого пламени.
+            </p>
+            <div class="button-row">
+              <a class="button-back" href="#s2">
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M11 6H1M6 11L1 6l5-5"></path>
+                </svg>
+                BACK
+              </a>
+              <a class="button" href="#s4">
+                NEXT
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- s4 — Девятый вал -->
-      <section id="s4">
-        <div class="text-card">
-          <div class="tag" style="color: teal">1850 · Главный шедевр</div>
-          <h2 style="color: teal">Девятый вал</h2>
-          <p class="body-text">
-            Море после шторма. Выжившие держатся за обломки мачты, а на них надвигается новая волна. Жёлто-оранжевая палитра неба символизирует грядущее спасение. Айвазовский изобразил море настолько реалистично, что, по словам зрителей, от долгого взгляда укачивает.
-          </p>
-          <div class="button-row">
-            <a class="button-back" href="#s3">
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M11 6H1M6 11L1 6l5-5"></path>
-              </svg>
-              BACK
-            </a>
-            <a class="button" href="#s5">
-              NEXT
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s4 — Девятый вал -->
+        <section id="s4">
+          <div class="text-card">
+            <div class="tag" style="color: teal">1850 · Главный шедевр</div>
+            <h2 style="color: teal">Девятый вал</h2>
+            <p class="body-text">
+              Море после шторма. Выжившие держатся за обломки мачты, а на них надвигается новая волна. Жёлто-оранжевая палитра неба символизирует грядущее спасение. Айвазовский изобразил море настолько реалистично, что от долгого взгляда, по словам зрителей, укачивает.
+            </p>
+            <div class="button-row">
+              <a class="button-back" href="#s3">
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M11 6H1M6 11L1 6l5-5"></path>
+                </svg>
+                BACK
+              </a>
+              <a class="button" href="#s5">
+                NEXT
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- s5 — Вид Тифлиса -->
-      <section id="s5">
-        <div class="text-card right">
-          <div class="tag" style="color: orange">1869 · Тифлис</div>
-          <h2 style="color: orange">Вид Тифлиса</h2>
-          <p class="body-text">
-            Бытовые зарисовки из жизни Тифлиса (ныне Тбилиси): жители в тени деревьев, верблюжьи караваны, храм Метехи и крепость Нарикала. Нежная палитра создаёт ощущение неги и летнего покоя. Взгляд уводит вдаль — к горам и скалистому берегу Куры.
-          </p>
-          <div class="button-row">
-            <a class="button-back" href="#s4">
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M11 6H1M6 11L1 6l5-5"></path>
-              </svg>
-              BACK
-            </a>
-            <a class="button" href="#s0">
-              START
-              <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
-                <path d="M1 6h10M6 1l5 5-5 5"></path>
-              </svg>
-            </a>
+        <!-- s5 — Вид Тифлиса -->
+        <section id="s5">
+          <div class="text-card right">
+            <div class="tag" style="color: orange">1869 · Тифлис</div>
+            <h2 style="color: orange">Вид Тифлиса</h2>
+            <p class="body-text">
+              Бытовые зарисовки из жизни Тифлиса (ныне Тбилиси): жители в тени деревьев, верблюжьи караваны, храм Метехи и крепость Нарикала. Нежная палитра создаёт ощущение летнего покоя. Взгляд уводит вдаль — к горам и скалистому берегу Куры.
+            </p>
+            <div class="button-row">
+              <a class="button-back" href="#s4">
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M11 6H1M6 11L1 6l5-5"></path>
+                </svg>
+                BACK
+              </a>
+              <a class="button" href="#s0">
+                START
+                <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 12 12">
+                  <path d="M1 6h10M6 1l5 5-5 5"></path>
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-    </div>
+      </div>
 
-    <div id="left-text">
-      <a href="#" rel="noopener" target="_blank"><font size="7" face="Bebas Neue" color="grey">AIVAZOVSKY</font></a>
-    </div>
+      <div id="left-text">
+        <a href="#" rel="noopener" target="_blank"><font size="7" face="Bebas Neue" color="grey">AIVAZOVSKY</font></a>
+      </div>
 
-    <div id="right-text">
-      <a href="#" rel="noopener" target="_blank"><font size="7" face="Bebas Neue" color="grey">GALLERY</font></a>
-    </div>
+      <div id="right-text">
+        <a href="#" rel="noopener" target="_blank"><font size="7" face="Bebas Neue" color="grey">GALLERY</font></a>
+      </div>
 
     </div>
 
     <script>
       const IMAGE_SRCS = [
-        "assets/tatar_wedding.png",
-        "assets/moon_night.png",
-        "assets/lazor_grot.png",
-        "assets/petr1.png",
-        "assets/9val.png",
-        "assets/vid_tiflisa.png"
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/tatar_wedding.png?raw=true",
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/moon_night.png?raw=true",
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/lazor_grot.png?raw=true",
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/petr1.png?raw=true",
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/9val.png?raw=true",
+        "https://github.com/whisk0s/web-design2/blob/main/prac13/assets/vid_tiflisa.png?raw=true"
       ];
 
       const IMAGE_ASPECTS = [1, 1, 1, 1, 1, 1];
@@ -727,7 +726,391 @@
         "VIEW OF TIFLIS"
       ];
     </script>
-    <script src="cubescroll.js"></script>
+    <script>
+const SWAP_RADIUS = 3;
+
+const N = IMAGE_SRCS.length;
+const STOPS = buildStops(N);
+
+const stopIndex = (s) => Math.min(N - 1, Math.floor(s * (N - 1)));
+
+function faceAtStop(i) {
+  if (i < 6) return i;
+  return 1 + ((i - 2) % 4);
+}
+
+function buildStops(n) {
+  const base = [
+    { rx: 90, ry: 0 },
+    { rx: 0, ry: 0 },
+    { rx: 0, ry: -90 },
+    { rx: 0, ry: -180 },
+    { rx: 0, ry: -270 },
+    { rx: -90, ry: -360 }
+  ];
+  const out = base.slice(0, Math.min(n, 6));
+  for (let i = 6; i < n; i++) {
+    out.push({ rx: 0, ry: -360 - (i - 6) * 90 });
+  }
+  return out;
+}
+
+const dom = {
+  cube: document.getElementById("cube"),
+  faces: [...document.querySelectorAll(".face")],
+  scrollEl: document.getElementById("scroll_container"),
+  strip: document.getElementById("scene_strip"),
+  upbarPct: document.getElementById("upbar_pct"),
+  progFill: document.getElementById("prog_fill"),
+  sceneName: document.getElementById("scene_name"),
+  captionNum: document.getElementById("face_caption_num"),
+  captionName: document.getElementById("face_caption_name"),
+  themeToggle: document.getElementById("theme_toggle")
+};
+
+for (let i = dom.scrollEl.querySelectorAll("section").length; i < N; i++) {
+  const sec = document.createElement("section");
+  sec.id = `s${i}`;
+  dom.scrollEl.appendChild(sec);
+}
+
+dom.strip.innerHTML = "";
+for (let i = 0; i < N; i++) {
+  const a = document.createElement("a");
+  a.href = `#s${i}`;
+  a.className = "scene-dot" + (i === 0 ? " active" : "");
+  dom.strip.appendChild(a);
+}
+
+const sceneDots = [...document.querySelectorAll(".scene-dot")];
+const sections = [...document.querySelectorAll("#scroll_container section")];
+
+const faceImgIdx = new Array(6).fill(-1);
+let currentStop = -1;
+
+const imagePromises = new Map();
+
+const isDark = () =>
+  document.documentElement.getAttribute("data-theme") === "dark";
+
+const getDarkSrc = (src) => src.replace(/\.webp$/, "-dark.webp");
+
+const getActiveSrc = (imgIdx) => {
+  const src = IMAGE_SRCS[imgIdx];
+  return isDark() ? getDarkSrc(src) : src;
+};
+
+const preloadImage = (src) => {
+  if (imagePromises.has(src)) return imagePromises.get(src);
+  const p = (async () => {
+    const img = new Image();
+    img.src = src;
+    await img.decode().catch(() => {});
+    return img;
+  })();
+  imagePromises.set(src, p);
+  return p;
+};
+
+IMAGE_SRCS.forEach((src) => {
+  preloadImage(src);
+  preloadImage(getDarkSrc(src));
+});
+
+async function setFaceImage(faceIdx, imgIdx, force = false) {
+  if (!force && faceIdx === faceAtStop(currentStop)) return;
+  if (!force && faceImgIdx[faceIdx] === imgIdx) return;
+  faceImgIdx[faceIdx] = imgIdx;
+
+  const src = getActiveSrc(imgIdx);
+  const face = dom.faces[faceIdx];
+
+  await preloadImage(src);
+
+  if (faceImgIdx[faceIdx] !== imgIdx) return;
+
+  let img = face.querySelector("img");
+  if (!img) {
+    img = new Image();
+    face.appendChild(img);
+  }
+  img.alt = FACE_NAMES[imgIdx] ?? "";
+  img.src = src;
+  img.style.objectFit = (IMAGE_ASPECTS[imgIdx] ?? 1) !== 1 ? "contain" : "";
+}
+
+const refreshFaceImages = () => {
+  const snapshot = [...faceImgIdx];
+  faceImgIdx.fill(-1);
+  snapshot.forEach((imgIdx, faceIdx) => {
+    if (imgIdx !== -1) setFaceImage(faceIdx, imgIdx, true);
+  });
+};
+
+for (let i = 0; i < Math.min(N, 6); i++) {
+  if (IMAGE_SRCS[i]) setFaceImage(i, i, true);
+}
+
+function checkImageSwaps(smooth) {
+  const base = stopIndex(smooth);
+  for (let offset = -SWAP_RADIUS; offset <= SWAP_RADIUS; offset++) {
+    if (offset === 0) continue;
+    const si = base + offset;
+    if (si < 0 || si >= N) continue;
+    setFaceImage(faceAtStop(si), si);
+  }
+}
+
+let lastFaceIdx = -1;
+
+const updateUPBAR = (s) => {
+  const p = Math.round(s * 100);
+  const si = sectionIndexFromScroll(scrollY);
+  currentStop = si;
+  dom.upbarPct.textContent = String(p).padStart(3, "0") + "%";
+  dom.progFill.style.width = `${p}%`;
+  if (si !== lastFaceIdx) {
+    lastFaceIdx = si;
+    const name = FACE_NAMES[si] ?? "";
+    dom.sceneName.textContent = name;
+    dom.captionNum.textContent = String(si + 1).padStart(2, "0");
+    dom.captionName.textContent = name;
+    sceneDots.forEach((d, i) => d.classList.toggle("active", i === si));
+  }
+};
+
+const easeIO = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+
+const setCubeTransform = (s) => {
+  if (N < 2 || STOPS.length < 2) return;
+  const t = s * (N - 1);
+  const i = Math.min(Math.floor(t), N - 2);
+  const f = easeIO(t - i);
+  const a = STOPS[i];
+  const b = STOPS[i + 1];
+  const rx = a.rx + (b.rx - a.rx) * f;
+  const ry = a.ry + (b.ry - a.ry) * f;
+  dom.cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+};
+
+let sectionTops = [];
+
+const buildSectionTops = () => {
+  sectionTops = sections.map(
+    (s) => s.getBoundingClientRect().top + window.scrollY
+  );
+};
+
+const sectionIndexFromScroll = (y) => {
+  const mid = y + innerHeight * 0.5;
+  let idx = 0;
+  for (let i = 0; i < sectionTops.length; i++) {
+    if (mid >= sectionTops[i]) idx = i;
+  }
+  return Math.min(idx, N - 1);
+};
+
+const mq = window.matchMedia("(prefers-color-scheme: dark)");
+const getSystemTheme = () => (mq.matches ? "dark" : "light");
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.colorScheme = theme;
+  refreshFaceImages();
+};
+
+applyTheme(getSystemTheme());
+mq.addEventListener("change", (e) => applyTheme(e.matches ? "dark" : "light"));
+
+dom.themeToggle.addEventListener("click", () => {
+  const cur =
+    document.documentElement.getAttribute("data-theme") || getSystemTheme();
+  applyTheme(cur === "dark" ? "light" : "dark");
+});
+
+const mqSmall = window.matchMedia("(max-width: 56.25em)");
+
+let maxScroll = 1;
+let lastScrollHeight = 0;
+let lastInnerHeight = 0;
+
+const resize = () => {
+  const h = document.documentElement.scrollHeight;
+  const vh = innerHeight;
+  if (h === lastScrollHeight && vh === lastInnerHeight) return;
+  lastScrollHeight = h;
+  lastInnerHeight = vh;
+  maxScroll = Math.max(1, h - vh);
+  buildSectionTops();
+};
+
+resize();
+
+let tgt = 0;
+let smooth = 0;
+let velocity = 0;
+
+const ease = 0.1;
+const dynamicFriction = (v) => (Math.abs(v) > 200 ? 0.8 : 0.9);
+
+window.addEventListener("resize", () => {
+  resize();
+  tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+  smooth = tgt;
+});
+
+let resizePending = false;
+const ro = new ResizeObserver(() => {
+  if (resizePending) return;
+  resizePending = true;
+  requestAnimationFrame(() => {
+    resize();
+    tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+    smooth = tgt;
+    resizePending = false;
+  });
+});
+ro.observe(document.documentElement);
+
+window.addEventListener(
+  "scroll",
+  () => {
+    tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+    tgt = Math.max(0, Math.min(1, tgt));
+  },
+  { passive: true }
+);
+
+window.addEventListener(
+  "wheel",
+  (e) => {
+    e.preventDefault();
+    const linePx = 16;
+    const pagePx = innerHeight * 0.9;
+    const delta =
+      e.deltaMode === 1
+        ? e.deltaY * linePx
+        : e.deltaMode === 2
+        ? e.deltaY * pagePx
+        : e.deltaY;
+    if (Math.abs(delta) < 5) return;
+    stopAnchorAnim();
+    velocity += delta;
+    velocity = Math.max(-600, Math.min(600, velocity));
+  },
+  { passive: false }
+);
+
+const revealEls = [
+  ...document.querySelectorAll(
+    ".tag, h1, h2, .body-text, .button, .button-back"
+  )
+];
+
+const io = new IntersectionObserver(
+  (entries) =>
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    }),
+  { threshold: 0.1 }
+);
+revealEls.forEach((el) => io.observe(el));
+
+let lastNow = performance.now();
+
+const frame = (now) => {
+  requestAnimationFrame(frame);
+
+  if (document.hidden) {
+    lastNow = now;
+    return;
+  }
+
+  const dt = Math.min((now - lastNow) / 1000, 0.05);
+  lastNow = now;
+
+  velocity *= Math.pow(dynamicFriction(velocity), dt * 60);
+  if (Math.abs(velocity) < 0.01) velocity = 0;
+
+  if (Math.abs(velocity) > 0.2) {
+    const next = Math.max(0, Math.min(scrollY + velocity * ease, maxScroll));
+    window.scrollTo(0, next);
+    tgt = next / maxScroll;
+  }
+
+  smooth += (tgt - smooth) * (1 - Math.exp(-dt * 8));
+  smooth = Math.max(0, Math.min(1, smooth));
+
+  updateUPBAR(smooth);
+  checkImageSwaps(smooth);
+  setCubeTransform(smooth);
+};
+
+requestAnimationFrame(frame);
+
+let anchorAnim = null;
+let isAnchorScrolling = false;
+
+const stopAnchorAnim = () => {
+  if (anchorAnim) {
+    cancelAnimationFrame(anchorAnim);
+    anchorAnim = null;
+  }
+  isAnchorScrolling = false;
+};
+
+const easeInOutCubic = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+const smoothScrollToY = (targetY, duration = 900) => {
+  stopAnchorAnim();
+  velocity = 0;
+  isAnchorScrolling = true;
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  const start = performance.now();
+  const tick = (now) => {
+    const p = Math.min(1, (now - start) / duration);
+    const y = startY + diff * easeInOutCubic(p);
+    window.scrollTo(0, y);
+    tgt = y / maxScroll;
+    smooth = tgt;
+    if (p < 1) {
+      anchorAnim = requestAnimationFrame(tick);
+    } else {
+      anchorAnim = null;
+      isAnchorScrolling = false;
+    }
+  };
+  anchorAnim = requestAnimationFrame(tick);
+};
+
+window.addEventListener("touchstart", stopAnchorAnim, { passive: true });
+window.addEventListener("mousedown", stopAnchorAnim, { passive: true });
+window.addEventListener("keydown", stopAnchorAnim);
+
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#s"]');
+  if (!a) return;
+  const target = document.querySelector(a.getAttribute("href"));
+  if (!target) return;
+  e.preventDefault();
+  const isHero = a.getAttribute("href") === "#s0";
+  const idx = sections.indexOf(target);
+  const baseY =
+    idx >= 0
+      ? sectionTops[idx]
+      : target.getBoundingClientRect().top + window.scrollY;
+  const extraOffset =
+    mqSmall.matches && !isHero
+      ? Math.max(0, target.offsetHeight - innerHeight)
+      : 0;
+  smoothScrollToY(Math.max(0, baseY + extraOffset));
+});
+    </script>
 
   </body>
 </html>
